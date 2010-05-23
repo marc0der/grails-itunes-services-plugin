@@ -2,12 +2,12 @@ package uk.co.hashcode.itunes
 
 import grails.test.*
 
-class ITunesServiceTests extends GrailsUnitTestCase {
+class ITunesServiceIntegrationTests extends GrailsUnitTestCase {
     def iTunesService
-    
+    def url    
     protected void setUp() {
         super.setUp()
-        def url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topalbums/sf=143441/limit=1/genre=14/xml'
+        url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topalbums/sf=143441/limit=1/genre=14/xml'
         iTunesService = new ITunesService(url:url)
     }
 
@@ -17,6 +17,6 @@ class ITunesServiceTests extends GrailsUnitTestCase {
 
     void testGetNewAlbumReleases() {
         def releases = iTunesService.getNewAlbumReleases(1)
-        assert releases == 'success'
+        assert releases == url
     }
 }

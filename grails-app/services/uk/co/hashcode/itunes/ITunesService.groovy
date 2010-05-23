@@ -7,6 +7,6 @@ class ITunesService {
     def url
 
     def getNewAlbumReleases(criteria) {
-    	return 'success'
+    	return url
     }
 }
