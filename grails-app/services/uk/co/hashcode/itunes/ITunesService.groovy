@@ -2,9 +2,11 @@ package uk.co.hashcode.itunes
 
 class ITunesService {
 
-    static transactional = true
+    static transactional = false
+    
+    def url
 
-    def serviceMethod() {
-
+    def getNewAlbumReleases(criteria) {
+    	return 'success'
     }
 }
