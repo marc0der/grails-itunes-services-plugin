@@ -4,14 +4,14 @@ import grails.test.*
 
 class ITunesServiceIntegrationTests extends GrailsUnitTestCase {
     def iTunesService
-    def url
-    def parameters
         
     protected void setUp() {
         super.setUp()
-        url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa'
-        parameters = 'ws/RSS/topalbums/sf=143441/limit=10/genre=14/xml'
-        iTunesService = new ITunesService(url:"${url}/${parameters}")
+        def url = 'http://ax.itunes.apple.com/WebObjects/MZStore.woa'
+        def context = 'wpa/MRSS/newreleases'
+        def parameters = 'sf=143441/limit=10/genre=14'
+        def extension = 'rss.xml'
+        iTunesService = new ITunesService(url:"${url}/${context}/${parameters}/${extension}")
     }
 
     void testGetNewAlbumReleases() {
@@ -22,8 +22,15 @@ class ITunesServiceIntegrationTests extends GrailsUnitTestCase {
         
         releases.each { album ->
             assert album
-            assert album.name
-            println album.name
+            assert album.artist
+            assert album.artistLink
+            assert album.album
+            assert album.albumLink
+            assert album.albumPrice
+            assert album.coverArt
+            assert album.rights
+            assert album.releasedate
+            println album
         }
     }
 
