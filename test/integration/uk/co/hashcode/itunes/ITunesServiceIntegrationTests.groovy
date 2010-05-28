@@ -13,7 +13,7 @@ class ITunesServiceIntegrationTests extends GrailsUnitTestCase {
         def extension = 'rss.xml'
         iTunesService = new ITunesService(url:"${url}/${context}/${parameters}/${extension}")
     }
-
+    
     void testGetNewAlbumReleases() {
         def releases = iTunesService.getNewAlbumReleases()
         

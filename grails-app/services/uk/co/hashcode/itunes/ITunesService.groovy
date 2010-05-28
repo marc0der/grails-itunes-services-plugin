@@ -18,11 +18,11 @@ class ITunesService {
         SyndFeed feed = feedFetcher.retrieveFeed(new URL(url));
         def releases = []
         feed.entries.eachWithIndex { item, count ->
-            def album = [rank:(++count)]
+            def params = [rank:(++count)]
             item.foreignMarkup.each { foreignMarkup ->
-                album.put foreignMarkup.name, (foreignMarkup.value ?: 'Not Available')
+                params.put foreignMarkup.name, (foreignMarkup.value ?: 'Not Available')
             }
-            releases << album
+            releases << new Album(params)
         }
 
     	return releases
