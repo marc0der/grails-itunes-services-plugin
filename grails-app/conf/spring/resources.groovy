@@ -1,5 +1,5 @@
 beans = {
-    iTunesService(uk.co.hashcode.itunes.ITunesService){
+    feedsService(uk.co.hashcode.itunes.FeedsService){
         url = 'someurl'
     }
 }

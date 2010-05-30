@@ -4,7 +4,7 @@ import com.sun.syndication.fetcher.*
 import com.sun.syndication.fetcher.impl.*
 import com.sun.syndication.feed.synd.SyndFeed
 
-class ITunesService {
+class FeedsService {
 
     static transactional = false
     

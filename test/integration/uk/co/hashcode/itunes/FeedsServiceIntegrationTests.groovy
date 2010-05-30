@@ -2,8 +2,8 @@ package uk.co.hashcode.itunes
 
 import grails.test.*
 
-class ITunesServiceIntegrationTests extends GrailsUnitTestCase {
-    def iTunesService
+class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
+    def feedsService
         
     protected void setUp() {
         super.setUp()
@@ -11,11 +11,11 @@ class ITunesServiceIntegrationTests extends GrailsUnitTestCase {
         def context = 'wpa/MRSS/newreleases'
         def parameters = 'sf=143441/limit=10/genre=14'
         def extension = 'rss.xml'
-        iTunesService = new ITunesService(url:"${url}/${context}/${parameters}/${extension}")
+        feedsService = new FeedsService(url:"${url}/${context}/${parameters}/${extension}")
     }
     
     void testGetNewAlbumReleases() {
-        def releases = iTunesService.getNewAlbumReleases()
+        def releases = feedsService.getNewAlbumReleases()
         
         assert releases != null
         assert releases.size() == 10
