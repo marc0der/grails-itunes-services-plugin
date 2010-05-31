@@ -1,0 +1,23 @@
+<plugin name='itunes-service' version='0.1' grailsVersion='1.3.1 &gt; *'>
+  <author>Marco Vermeulen</author>
+  <authorEmail>marco_vermeulen@yahoo.co.uk</authorEmail>
+  <title>iTunes Service Plugin</title>
+  <description>
+This plugin allows Grails applications to integrate with the iTunes Web Services and RSS Feeds.
+</description>
+  <documentation>http://grails.org/plugin/itunes-service</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+    <resource>spring.resources</resource>
+    <resource>uk.co.hashcode.itunes.TestController</resource>
+    <resource>uk.co.hashcode.itunes.Album</resource>
+    <resource>uk.co.hashcode.itunes.Country</resource>
+    <resource>uk.co.hashcode.itunes.FeedType</resource>
+    <resource>uk.co.hashcode.itunes.Genre</resource>
+    <resource>uk.co.hashcode.itunes.FeedsService</resource>
+  </resources>
+  <dependencies />
+  <behavior />
+</plugin>
