@@ -4,6 +4,41 @@ import com.sun.syndication.fetcher.*
 import com.sun.syndication.fetcher.impl.*
 import com.sun.syndication.feed.synd.SyndFeed
 
+
+class FeedsCommand {
+	def urlBase
+	def feedType
+	def country
+	int limit
+	def genre
+	
+	final String WEBOBJECTS = 'WebObjects'
+	final String SUFFIX = 'rss.xml'
+	
+	String execute(){
+		if(!urlBase)
+			throw new IllegalStateException("URL base not set.")
+
+		if(feedType in [FeedType.TOP_IMIXES, FeedType.TOP_SONGS]) 
+			throw new UnsupportedOperationException("The FeedType ${feedType.service} is not supported.")
+		
+		feedType = feedType ?: FeedType.NEW_RELEASES
+		
+		limit = limit ?: 10
+		if(limit < 0) limit = 1
+		if(limit > 25) limit = 25
+		def limitStr = "limit=${limit}"
+		
+		country = country ?: Country.USA
+		def countryStr = "sf=${country.id}"
+		
+		genre = genre ?: Genre.POP
+		def genreStr = "genre=${genre.id}"
+			
+		return "${urlBase}/${WEBOBJECTS}/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/${countryStr}/${limitStr}/${genreStr}/${SUFFIX}"
+	}
+}
+
 class FeedsService {
 
     static transactional = false
