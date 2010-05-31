@@ -1,4 +1,4 @@
-class ITunesServiceGrailsPlugin {
+class ItunesServiceGrailsPlugin {
     // the plugin version
     def version = "0.1"
     // the version or versions of Grails the plugin is designed for
@@ -7,19 +7,19 @@ class ITunesServiceGrailsPlugin {
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-            "grails-app/views/error.gsp"
+            "grails-app/views/"
     ]
 
     // TODO Fill in these fields
-    def author = "Your name"
-    def authorEmail = ""
-    def title = "Plugin summary/headline"
+    def author = "Marco Vermeulen"
+    def authorEmail = "marco_vermeulen@yahoo.co.uk"
+    def title = "iTunes Services Plugin"
     def description = '''\\
-Brief description of the plugin.
+    This plugin allows your Grails application to integrate with the iTunes Web Services and RSS Feeds.
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/it-unes-service"
+    def documentation = "http://grails.org/plugin/itunes-service"
 
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before 
