@@ -4,18 +4,23 @@ import grails.test.*
 
 class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
     def feedsService
-        
+    def feedsCommand
+    
     protected void setUp() {
         super.setUp()
-        def url = 'http://ax.itunes.apple.com/WebObjects/MZStore.woa'
-        def context = 'wpa/MRSS/newreleases'
-        def parameters = 'sf=143441/limit=10/genre=14'
-        def extension = 'rss.xml'
-        feedsService = new FeedsService(url:"${url}/${context}/${parameters}/${extension}")
+        feedsService = new FeedsService()
+
+        def urlBase = 'http://ax.itunes.apple.com'
+        feedsCommand = new FeedsCommand(
+        	urlBase:urlBase,
+        	country:Country.USA,
+        	genre:Genre.POP,
+        	limit:10
+        )
     }
     
-    void testGetNewAlbumReleases() {
-        def releases = feedsService.getNewAlbumReleases()
+    void testGet10NewUsaPopAlbumReleases() {
+        def releases = feedsService.getNewAlbumReleases(feedsCommand)
         
         assert releases != null
         assert releases.size() == 10

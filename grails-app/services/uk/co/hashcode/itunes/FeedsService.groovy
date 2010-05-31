@@ -45,11 +45,10 @@ class FeedsService {
     
     def feedFetcher
     
-    def url
-
-    def getNewAlbumReleases() {
+    def getNewAlbumReleases(FeedsCommand command) {
         FeedFetcherCache feedInfoCache = HashMapFeedInfoCache.instance;
         FeedFetcher feedFetcher = new HttpURLFeedFetcher(feedInfoCache);
+        def url = command.execute()
         SyndFeed feed = feedFetcher.retrieveFeed(new URL(url));
         def releases = []
         feed.entries.eachWithIndex { item, count ->
