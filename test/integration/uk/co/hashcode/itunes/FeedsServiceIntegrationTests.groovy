@@ -9,13 +9,8 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
         feedsService = new FeedsService()
-
-        def urlBase = 'http://ax.itunes.apple.com'
         feedsCommand = new FeedsCommand(
-        	urlBase:urlBase,
-        	country:Country.USA,
-        	genre:Genre.POP,
-        	limit:10
+        	urlBase:'http://ax.itunes.apple.com'
         )
     }
     

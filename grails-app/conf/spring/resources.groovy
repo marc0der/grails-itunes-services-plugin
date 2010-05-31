@@ -1,5 +1,6 @@
 beans = {
-    feedsService(uk.co.hashcode.itunes.FeedsService){
-        url = 'someurl'
+    feedsCommand(uk.co.hashcode.itunes.FeedsCommand){ b ->
+    	b.scope = 'prototype'
+        urlBase = 'http://ax.itunes.apple.com'
     }
 }
