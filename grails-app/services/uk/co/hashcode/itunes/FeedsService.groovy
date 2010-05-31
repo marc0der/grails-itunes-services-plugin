@@ -6,19 +6,12 @@ import com.sun.syndication.feed.synd.SyndFeed
 
 
 class FeedsCommand {
-	def urlBase
 	def feedType
 	def country
 	int limit
 	def genre
 	
-	final String WEBOBJECTS = 'WebObjects'
-	final String SUFFIX = 'rss.xml'
-	
 	String execute(){
-		if(!urlBase)
-			throw new IllegalStateException("URL base not set.")
-
 		if(feedType in [FeedType.TOP_IMIXES, FeedType.TOP_SONGS]) 
 			throw new UnsupportedOperationException("The FeedType ${feedType.service} is not supported.")
 		
@@ -35,7 +28,7 @@ class FeedsCommand {
 		genre = genre ?: Genre.POP
 		def genreStr = "genre=${genre.id}"
 			
-		return "${urlBase}/${WEBOBJECTS}/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/${countryStr}/${limitStr}/${genreStr}/${SUFFIX}"
+		return "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/${countryStr}/${limitStr}/${genreStr}/rss.xml"
 	}
 }
 
@@ -43,13 +36,15 @@ class FeedsService {
 
     static transactional = false
     
+    def domain
+    
     def feedFetcher
     
     def getNewAlbumReleases(FeedsCommand command) {
         FeedFetcherCache feedInfoCache = HashMapFeedInfoCache.instance;
         FeedFetcher feedFetcher = new HttpURLFeedFetcher(feedInfoCache);
-        def url = command.execute()
-        SyndFeed feed = feedFetcher.retrieveFeed(new URL(url));
+        def commandStr = command.execute()
+        SyndFeed feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
         def releases = []
         feed.entries.eachWithIndex { item, count ->
             def params = [rank:(++count)]

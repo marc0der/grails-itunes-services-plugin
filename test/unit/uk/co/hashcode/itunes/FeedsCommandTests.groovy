@@ -8,7 +8,6 @@ import org.junit.Test;
 class FeedsCommandTests {
 	def feedsCommand
 	
-	def urlBase = 'http://www.someurlbase.com'
 	def feedType = FeedType.NEW_RELEASES
 	def country = Country.USA
 	def genre = Genre.POP
@@ -17,7 +16,6 @@ class FeedsCommandTests {
 	@Before
 	void setUp() throws Exception {
 		feedsCommand = new FeedsCommand(
-			urlBase:urlBase,
 			feedType:feedType,
 			country:country,
 			genre:genre,
@@ -28,23 +26,6 @@ class FeedsCommandTests {
 	@Test
 	void testExecuteReturnsNotNull(){
 		assert feedsCommand.execute() != null
-	}
-	
-	@Test
-	void testExecuteURLBaseNotSetThrowsException() {
-		feedsCommand.urlBase = null
-		try {
-			feedsCommand.execute()
-			fail()
-		} catch (IllegalStateException ise) {
-			//expected
-		}
-	}
-	
-	@Test
-	void testExecuteURLBaseSetSuccess() {
-		assert feedsCommand.urlBase != null
-		
 	}
 	
 	@Test
@@ -195,7 +176,7 @@ class FeedsCommandTests {
 	@Test
 	void testExecuteGeneratesWellFormedURL() {
 		def result = feedsCommand.execute()
-		def expected = "${urlBase}/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/sf=${country.id}/limit=${limit}/genre=${genre.id}/rss.xml"
+		def expected = "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/sf=${country.id}/limit=${limit}/genre=${genre.id}/rss.xml"
 		assert result == expected
 	}
 
