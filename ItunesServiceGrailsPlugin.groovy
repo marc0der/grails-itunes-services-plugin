@@ -10,41 +10,49 @@ class ItunesServiceGrailsPlugin {
             "grails-app/views/"
     ]
 
-    // TODO Fill in these fields
     def author = "Marco Vermeulen"
     def authorEmail = "marco_vermeulen@yahoo.co.uk"
-    def title = "iTunes Services Plugin"
-    def description = '''\\
-    This plugin allows your Grails application to integrate with the iTunes Web Services and RSS Feeds.
+    def title = "iTunes Service Plugin"
+    def description = '''
+This plugin allows Grails applications to integrate with the iTunes Web Services and RSS Feeds.
 '''
 
     // URL to the plugin's documentation
     def documentation = "http://grails.org/plugin/itunes-service"
 
     def doWithWebDescriptor = { xml ->
-        // TODO Implement additions to web.xml (optional), this event occurs before 
+
     }
 
     def doWithSpring = {
-        // TODO Implement runtime spring config (optional)
+	    feedInfoCache(com.sun.syndication.fetcher.impl.HashMapFeedInfoCache){ bean ->
+		    bean.factoryMethod = 'getInstance'
+	    }
+	    println 'FeedInfoCache configured...'
+	    feedFetcher(com.sun.syndication.fetcher.impl.HttpURLFeedFetcher){
+		    feedInfoCache = ref('feedInfoCache')
+	    }
+	    println 'FeedFetcher configured...'
+        feedsService(uk.co.hashcode.itunes.FeedsService){
+	    	domain(String, 'http://ax.itunes.apple.com')
+            feedFetcher = ref('feedFetcher')
+        }
+	    println 'FeedsService configured...'
     }
 
     def doWithDynamicMethods = { ctx ->
-        // TODO Implement registering dynamic methods to classes (optional)
+
     }
 
     def doWithApplicationContext = { applicationContext ->
-        // TODO Implement post initialization spring config (optional)
+
     }
 
     def onChange = { event ->
-        // TODO Implement code that is executed when any artefact that this plugin is
-        // watching is modified and reloaded. The event contains: event.source,
-        // event.application, event.manager, event.ctx, and event.plugin.
+
     }
 
     def onConfigChange = { event ->
-        // TODO Implement code that is executed when the project configuration changes.
-        // The event is the same as for 'onChange'.
+
     }
 }
