@@ -1,5 +1,8 @@
 package uk.co.hashcode.itunes
 
+import com.sun.syndication.fetcher.*;
+import com.sun.syndication.fetcher.impl.*;
+
 import grails.test.*
 
 class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
@@ -8,7 +11,13 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
     
     protected void setUp() {
         super.setUp()
-        feedsService = new FeedsService(domain:'http://ax.itunes.apple.com')
+        FeedFetcherCache feedInfoCache = HashMapFeedInfoCache.instance;
+        FeedFetcher feedFetcher = new HttpURLFeedFetcher(feedInfoCache);
+
+        feedsService = new FeedsService(
+        	domain:'http://ax.itunes.apple.com',
+        	feedFetcher:feedFetcher
+        )
         feedsCommand = new FeedsCommand()
     }
     

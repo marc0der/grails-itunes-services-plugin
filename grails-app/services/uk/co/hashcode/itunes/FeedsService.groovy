@@ -1,9 +1,6 @@
 package uk.co.hashcode.itunes
 
-import com.sun.syndication.fetcher.*
-import com.sun.syndication.fetcher.impl.*
-import com.sun.syndication.feed.synd.SyndFeed
-
+import com.sun.syndication.feed.synd.SyndFeed;
 
 class FeedsCommand {
 	def feedType
@@ -41,8 +38,6 @@ class FeedsService {
     def feedFetcher
     
     def getNewAlbumReleases(FeedsCommand command) {
-        FeedFetcherCache feedInfoCache = HashMapFeedInfoCache.instance;
-        FeedFetcher feedFetcher = new HttpURLFeedFetcher(feedInfoCache);
         def commandStr = command.execute()
         SyndFeed feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
         def releases = []
