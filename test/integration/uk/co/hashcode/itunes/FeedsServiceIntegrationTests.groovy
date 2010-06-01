@@ -27,7 +27,7 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
         assert releases != null
         assert releases.size() == 10
         
-        validateAlbums(releases)
+        validate(releases)
     }
     
     void testGetJustAddedAlbums() {
@@ -36,7 +36,7 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
         assert releases != null
         assert releases.size() == 10
         
-        validateAlbums(releases)
+        validate(releases)
     }
     
     void testGetFeaturedAlbums() {
@@ -46,10 +46,10 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
     	assert albums != null
     	assert albums.size() == 2
     	
-    	validateAlbums(albums)
+    	validate(albums)
     }
     
-    def validateAlbums = { albums ->
+    def validate = { albums ->
             albums.each { album ->
             assert album
             assert album.artist
