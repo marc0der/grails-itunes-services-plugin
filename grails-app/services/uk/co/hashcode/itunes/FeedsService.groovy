@@ -52,19 +52,25 @@ class FeedsService {
     	return fetch(command)
     }
     
+    List getTopAlbums(FeedsCommand command) {
+    	command.feedType = FeedType.TOP_ALBUMS
+    	return fetch(command)
+    }
+    
     def fetch = { command ->
         def commandStr = command.execute()
-        SyndFeed feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
-        def releases = []
+        def feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
+        def albums = []
         feed.entries.eachWithIndex { item, count ->
             def params = [rank:(++count)]
-            item.foreignMarkup.each { foreignMarkup ->
-                params.put foreignMarkup.name, (foreignMarkup.value ?: 'Not Available')
+            item.foreignMarkup.each { markup ->
+                params.put markup.name, (markup.value ?: 'Not Available')
             }
-            releases << new Album(params)
+            if(item.link) params.put 'link', item.link
+            albums << params
         }
 
-    	return releases
-    }
+    	return albums
+    }    
 }
 

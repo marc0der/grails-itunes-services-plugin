@@ -49,9 +49,31 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
     	validate(albums)
     }
     
+    void testGetTopAlbums() {
+    	feedsCommand.limit = 5
+    	def albums = feedsService.getTopAlbums(feedsCommand)
+    	
+    	assert albums != null
+    	assert albums.size() == 5
+    	
+    	albums.eachWithIndex { album, idx ->
+    		assert album
+    		assert album.rank == ++idx
+    		assert album.name
+    		assert album.contentType
+    		assert album.artist
+    		assert album.price
+    		assert album.image
+    		assert album.releaseDate
+    		assert album.link
+    		println album
+    	}
+    }
+    
     def validate = { albums ->
-            albums.each { album ->
+            albums.eachWithIndex { album, idx ->
             assert album
+            assert album.rank == ++idx
             assert album.artist
             assert album.artistLink
             assert album.album
@@ -60,6 +82,8 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
             assert album.coverArt
             assert album.rights
             assert album.releasedate
+            assert album.link
+            assert album.link == album.albumLink
             println album
         }
     }
