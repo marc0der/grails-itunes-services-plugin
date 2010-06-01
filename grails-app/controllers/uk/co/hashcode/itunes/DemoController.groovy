@@ -1,13 +1,13 @@
 package uk.co.hashcode.itunes
 
-class TestController {
+class DemoController {
 
     def feedsService
 
     def index = { 
         def command = new FeedsCommand()
         def newReleases = feedsService.getNewAlbumReleases(command)
-        render(view:'releases', model:[newreleases:newReleases])
+        render(view:'show', model:[newreleases:newReleases])
     }
 
 }
