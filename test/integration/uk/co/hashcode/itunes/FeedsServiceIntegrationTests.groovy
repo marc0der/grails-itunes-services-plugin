@@ -21,13 +21,26 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
         feedsCommand = new FeedsCommand()
     }
     
-    void testGet10NewUsaPopAlbumReleases() {
+    void testGetAlbumReleases() {
         def releases = feedsService.getNewAlbumReleases(feedsCommand)
         
         assert releases != null
         assert releases.size() == 10
         
-        releases.each { album ->
+        validateAlbums(releases)
+    }
+    
+    void testGetJustAddedAlbumReleases() {
+    	def releases = feedsService.getJustAddedAlbumReleases(feedsCommand)
+
+        assert releases != null
+        assert releases.size() == 10
+        
+        validateAlbums(releases)
+    }
+    
+    def validateAlbums = { albums ->
+            albums.each { album ->
             assert album
             assert album.artist
             assert album.artistLink

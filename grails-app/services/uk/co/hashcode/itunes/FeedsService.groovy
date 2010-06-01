@@ -37,8 +37,13 @@ class FeedsService {
     
     def feedFetcher
     
-    List getNewAlbumReleases(FeedsCommand command){
+    List getNewAlbumReleases(FeedsCommand command) {
     	command.feedType = FeedType.NEW_RELEASES
+    	return fetch(command)
+    }
+    
+    List getJustAddedAlbumReleases(FeedsCommand command) {
+    	command.feedType = FeedType.JUST_ADDED
     	return fetch(command)
     }
     
