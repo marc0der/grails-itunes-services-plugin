@@ -30,8 +30,8 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
         validateAlbums(releases)
     }
     
-    void testGetJustAddedAlbumReleases() {
-    	def releases = feedsService.getJustAddedAlbumReleases(feedsCommand)
+    void testGetJustAddedAlbums() {
+    	def releases = feedsService.getJustAddedAlbums(feedsCommand)
 
         assert releases != null
         assert releases.size() == 10

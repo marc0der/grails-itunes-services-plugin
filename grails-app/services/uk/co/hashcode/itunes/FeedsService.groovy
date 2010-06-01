@@ -42,7 +42,7 @@ class FeedsService {
     	return fetch(command)
     }
     
-    List getJustAddedAlbumReleases(FeedsCommand command) {
+    List getJustAddedAlbums(FeedsCommand command) {
     	command.feedType = FeedType.JUST_ADDED
     	return fetch(command)
     }
