@@ -47,6 +47,11 @@ class FeedsService {
     	return fetch(command)
     }
     
+    List getFeaturedAlbums(FeedsCommand command) {
+    	command.feedType = FeedType.FEATURED_ALBUMS
+    	return fetch(command)
+    }
+    
     def fetch = { command ->
         def commandStr = command.execute()
         SyndFeed feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
