@@ -37,6 +37,7 @@ class FeedsCommandTests {
 		assert result.contains(FeedType.NEW_RELEASES.context)
 		assert result.contains(FeedType.NEW_RELEASES.subContext)
 		assert result.contains(FeedType.NEW_RELEASES.service)
+        assert result.contains(FeedType.NEW_RELEASES.suffix)
 	}
 	
 	@Test
@@ -48,6 +49,7 @@ class FeedsCommandTests {
 		assert result.contains(FeedType.JUST_ADDED.context)
 		assert result.contains(FeedType.JUST_ADDED.subContext)
 		assert result.contains(FeedType.JUST_ADDED.service)
+		assert result.contains(FeedType.JUST_ADDED.suffix)
 	}
 	
 	@Test
@@ -59,6 +61,7 @@ class FeedsCommandTests {
 		assert result.contains(FeedType.FEATURED_ALBUMS.context)
 		assert result.contains(FeedType.FEATURED_ALBUMS.subContext)
 		assert result.contains(FeedType.FEATURED_ALBUMS.service)
+		assert result.contains(FeedType.FEATURED_ALBUMS.suffix)
 	}
 	
 	@Test
@@ -70,6 +73,7 @@ class FeedsCommandTests {
 		assert result.contains(FeedType.TOP_ALBUMS.context)
 		assert result.contains(FeedType.TOP_ALBUMS.subContext)
 		assert result.contains(FeedType.TOP_ALBUMS.service)
+		assert result.contains(FeedType.TOP_ALBUMS.suffix)
 	}
 	
 	@Test
@@ -101,6 +105,9 @@ class FeedsCommandTests {
 		assert result != null
 		assert result.contains(FeedType.NEW_RELEASES.service)
 		assert result.contains(FeedType.NEW_RELEASES.woa)
+		assert result.contains(FeedType.NEW_RELEASES.context)
+		assert result.contains(FeedType.NEW_RELEASES.subContext)
+		assert result.contains(FeedType.NEW_RELEASES.suffix)
 	}
 	
 	@Test
@@ -176,7 +183,7 @@ class FeedsCommandTests {
 	@Test
 	void testExecuteGeneratesWellFormedURL() {
 		def result = feedsCommand.execute()
-		def expected = "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/sf=${country.id}/limit=${limit}/genre=${genre.id}/rss.xml"
+		def expected = "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/sf=${country.id}/limit=${limit}/genre=${genre.id}/${feedType.suffix}"
 		assert result == expected
 	}
 
