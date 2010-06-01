@@ -37,7 +37,12 @@ class FeedsService {
     
     def feedFetcher
     
-    def getNewAlbumReleases(FeedsCommand command) {
+    List getNewAlbumReleases(FeedsCommand command){
+    	command.feedType = FeedType.NEW_RELEASES
+    	return fetch(command)
+    }
+    
+    def fetch = { command ->
         def commandStr = command.execute()
         SyndFeed feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
         def releases = []
