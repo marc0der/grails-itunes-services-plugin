@@ -70,6 +70,26 @@ class ItunesFeedsServiceIntegrationTests extends GrailsUnitTestCase {
     	}
     }
     
+    void testGetTopIMixes(){
+    	try{
+    		feedsService.getTopIMixes(feedsCommand)
+    		fail()
+    		
+    	} catch (UnsupportedOperationException uoe){
+    		//expected
+    	}
+    }
+    
+    void testGetTopSongs(){
+    	try{
+    		feedsService.getTopSongs(feedsCommand)
+    		fail()
+    		
+    	} catch (UnsupportedOperationException uoe){
+    		//expected
+    	}
+    }
+    
     def validate = { albums ->
             albums.eachWithIndex { album, idx ->
             assert album

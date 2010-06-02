@@ -57,6 +57,14 @@ class ItunesFeedsService {
     	return fetch(command)
     }
     
+    List getTopIMixes(FeedsCommand command) {
+    	throw new UnsupportedOperationException()
+    }
+    
+    List getTopSongs(FeedsCommand command) {
+    	throw new UnsupportedOperationException()
+    }
+    
     def fetch = { command ->
         def commandStr = command.execute()
         def feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
