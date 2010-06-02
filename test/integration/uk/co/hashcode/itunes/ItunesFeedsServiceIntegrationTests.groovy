@@ -5,7 +5,7 @@ import com.sun.syndication.fetcher.impl.*;
 
 import grails.test.*
 
-class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
+class ItunesFeedsServiceIntegrationTests extends GrailsUnitTestCase {
     def feedsService
     def feedsCommand
     
