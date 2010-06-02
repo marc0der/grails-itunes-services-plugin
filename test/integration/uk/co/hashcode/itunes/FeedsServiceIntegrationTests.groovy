@@ -14,7 +14,7 @@ class FeedsServiceIntegrationTests extends GrailsUnitTestCase {
         FeedFetcherCache feedInfoCache = HashMapFeedInfoCache.instance;
         FeedFetcher feedFetcher = new HttpURLFeedFetcher(feedInfoCache);
 
-        feedsService = new FeedsService(
+        feedsService = new ItunesFeedsService(
         	domain:'http://ax.itunes.apple.com',
         	feedFetcher:feedFetcher
         )

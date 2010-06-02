@@ -29,7 +29,7 @@ class FeedsCommand {
 	}
 }
 
-class FeedsService {
+class ItunesFeedsService {
 
     static transactional = false
     

@@ -34,7 +34,7 @@ This plugin allows Grails applications to integrate with the iTunes Web Services
 		    feedInfoCache = ref('feedInfoCache')
 	    }
 	    println 'FeedFetcher configured...'
-        feedsService(uk.co.hashcode.itunes.FeedsService){
+        itunesFeedsService(uk.co.hashcode.itunes.ItunesFeedsService){
 	    	domain(String, 'http://ax.itunes.apple.com')
             feedFetcher = ref('feedFetcher')
         }
