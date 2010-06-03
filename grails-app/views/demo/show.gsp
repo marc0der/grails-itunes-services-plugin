@@ -7,25 +7,29 @@
 		<div>
 		    <h1>New Releases</h1>
 		    <g:each var="album" in="${results.newReleases}">
-		        <p>Album: <a href="${album.link}">${album.name}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
+		        <p><strong>${album.rank}.</strong> Album: <a href="${album.link}">${album.name}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
+		        <p><img src="${album.image}"/> Price: ${album.price} Release: ${album.releaseDate}</p>
 		    </g:each>
 		</div>
 		<div>
 		    <h1>Just Added Albums</h1>
 		    <g:each var="album" in="${results.justAddedAlbums}">
-		        <p>Album: <a href="${album.link}">${album.name}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
+                <p><strong>${album.rank}.</strong> Album: <a href="${album.link}">${album.name}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
+                <p><img src="${album.image}"/> Price: ${album.price} Release: ${album.releaseDate}</p>
 		    </g:each>
 		</div>
         <div>
             <h1>Featured Albums</h1>
             <g:each var="album" in="${results.featuredAlbums}">
-                <p>Album: <a href="${album.link}">${album.name}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
+                <p><strong>${album.rank}.</strong> Album: <a href="${album.link}">${album.name}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
+                <p><img src="${album.image}"/> Price: ${album.price} Release: ${album.releaseDate}</p>
             </g:each>
         </div>
         <div>
             <h1>Top Albums</h1>
             <g:each var="album" in="${results.topAlbums}">
-                <p>Album: <a href="${album.link}">${album.name}</a> by ${album.artist}</p>
+                <p><strong>${album.rank}.</strong> Album: <a href="${album.link}">${album.name}</a> by ${album.artist}</p>
+                <p><img src="${album.image}"/> Price: ${album.price} Release: ${album.releaseDate}</p>
             </g:each>
         </div>
     </body>
