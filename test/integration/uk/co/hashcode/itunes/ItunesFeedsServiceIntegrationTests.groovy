@@ -60,7 +60,6 @@ class ItunesFeedsServiceIntegrationTests extends GrailsUnitTestCase {
     		assert album
     		assert album.rank == ++idx
     		assert album.name
-    		assert album.contentType
     		assert album.artist
     		assert album.price
     		assert album.image
@@ -96,14 +95,12 @@ class ItunesFeedsServiceIntegrationTests extends GrailsUnitTestCase {
             assert album.rank == ++idx
             assert album.artist
             assert album.artistLink
-            assert album.album
-            assert album.albumLink
-            assert album.albumPrice
-            assert album.coverArt
-            assert album.rights
-            assert album.releasedate
+            assert album.name
             assert album.link
-            assert album.link == album.albumLink
+            assert album.price
+            assert album.image
+            assert album.rights
+            assert album.releaseDate
             println album
         }
     }

@@ -39,22 +39,22 @@ class ItunesFeedsService {
     
     List getNewAlbumReleases(FeedsCommand command) {
     	command.feedType = FeedType.NEW_RELEASES
-    	return fetch(command)
+    	return convertRssParams(fetch(command))
     }
     
     List getJustAddedAlbums(FeedsCommand command) {
     	command.feedType = FeedType.JUST_ADDED
-    	return fetch(command)
+    	return convertRssParams(fetch(command))
     }
     
     List getFeaturedAlbums(FeedsCommand command) {
     	command.feedType = FeedType.FEATURED_ALBUMS
-    	return fetch(command)
+    	return convertRssParams(fetch(command))
     }
     
     List getTopAlbums(FeedsCommand command) {
     	command.feedType = FeedType.TOP_ALBUMS
-    	return fetch(command)
+    	return convertXmlParams(fetch(command))
     }
     
     List getTopIMixes(FeedsCommand command) {
@@ -79,6 +79,43 @@ class ItunesFeedsService {
         }
 
     	return albums
-    }    
+    }
+    
+    def convertRssParams = { paramsList ->
+    	def albums = []
+    	paramsList.each { params ->
+	    	albums << new Album(
+	    		rank:params.rank,
+	    		artist:params.artist,
+	    		artistLink:params.artistLink,
+	    		name:params.album,
+	    		link:params.albumLink,
+	    		price:params.albumPrice,
+	    		image:params.coverArt,
+	    		rights:params.rights,
+	    		releaseDate:params.releasedate
+	    	)
+    	}
+    	
+    	return albums
+    }
+    
+    def convertXmlParams = { paramsList ->
+    	def albums = []
+    	paramsList.each { params ->
+	    	albums << new Album(
+	    		rank:params.rank,
+	    		name:params.name,
+	    		artist:params.artist,
+	    		price:params.price,
+	    		image:params.image,
+	    		releaseDate:params.releaseDate,
+	    		link:params.link
+	    	)
+    	}
+    	
+    	return albums
+    }
+
 }
 
