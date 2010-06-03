@@ -9,11 +9,13 @@ class DemoController {
         def newReleases = itunesFeedsService.getNewAlbumReleases(command)
         def justAddedAlbums = itunesFeedsService.getJustAddedAlbums(command)
         def featuredAlbums = itunesFeedsService.getFeaturedAlbums(command)
+        def topAlbums = itunesFeedsService.getTopAlbums(command)
         
         def results = [
 		    newReleases:newReleases, 
 		    justAddedAlbums:justAddedAlbums, 
-		    featuredAlbums:featuredAlbums
+		    featuredAlbums:featuredAlbums,
+		    topAlbums:topAlbums
         ]
         render(view:'show', model:[results:results])
     }
