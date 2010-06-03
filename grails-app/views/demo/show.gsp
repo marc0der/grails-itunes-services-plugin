@@ -16,5 +16,11 @@
 		        <p>Album: <a href="${album.link}">${album.name}</a> by ${album.artist}</p>
 		    </g:each>
 		</div>
+        <div>
+            <h1>Featured Albums</h1>
+            <g:each var="album" in="${results.featuredAlbums}">
+                <p>Album: <a href="${album.link}">${album.name}</a> by ${album.artist}</p>
+            </g:each>
+        </div>
     </body>
 </html>
