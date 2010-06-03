@@ -4,9 +4,10 @@
 		<meta name="layout" content="main" />
     </head>
     <body>
-		<div id="pageBody">
+		<div>
+		    <h1>New Releases</h1>
 		    <g:each var="album" in="${newreleases}">
-		        <p>Album: <a href="${album.albumLink}">${album.album}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
+		        <p>Album: <a href="${album.link}">${album.name}</a> by <a href="${album.artistLink}">${album.artist}</a></p>
 		    </g:each>
 		</div>
     </body>
