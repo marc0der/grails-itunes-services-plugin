@@ -1,5 +1,7 @@
 package uk.co.hashcode.itunes
 
+import java.text.SimpleDateFormat;
+
 import com.sun.syndication.feed.synd.SyndFeed;
 
 class FeedsCommand {
@@ -84,6 +86,7 @@ class ItunesFeedsService {
     def convertRssParams = { paramsList ->
     	def albums = []
     	paramsList.each { params ->
+    		def formatter = new SimpleDateFormat('MMM dd, yyyy')
 	    	albums << new Album(
 	    		rank:params.rank,
 	    		artist:params.artist,
@@ -93,7 +96,7 @@ class ItunesFeedsService {
 	    		price:params.albumPrice,
 	    		image:params.coverArt,
 	    		rights:params.rights,
-	    		releaseDate:params.releasedate
+	    		releaseDate:formatter.parse(params.releasedate)
 	    	)
     	}
     	
@@ -103,13 +106,14 @@ class ItunesFeedsService {
     def convertXmlParams = { paramsList ->
     	def albums = []
     	paramsList.each { params ->
+	    	def formatter = new SimpleDateFormat('yyyy-MM-dd')
 	    	albums << new Album(
 	    		rank:params.rank,
 	    		name:params.name,
 	    		artist:params.artist,
 	    		price:params.price,
 	    		image:params.image,
-	    		releaseDate:params.releaseDate,
+	    		releaseDate:formatter.parse(params.releaseDate),
 	    		link:params.link
 	    	)
     	}
