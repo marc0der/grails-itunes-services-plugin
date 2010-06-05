@@ -24,9 +24,9 @@ class FeedsCommand {
 		
 		genre = genre ?: Genre.ALL
 		def genreStr = ''
-		if(genre) genreStr = "genre=${genre.id}"
+		if(genre != Genre.ALL) genreStr = "/genre=${genre.id}"
 			
-		return "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/${countryStr}/${limitStr}/${genreStr}/${feedType.suffix}"
+		return "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/${countryStr}/${limitStr}${genreStr}/${feedType.suffix}"
 	}
 }
 
