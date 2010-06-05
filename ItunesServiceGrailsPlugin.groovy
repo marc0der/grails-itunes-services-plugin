@@ -15,8 +15,9 @@ class ItunesServiceGrailsPlugin {
     def authorEmail = "marco_vermeulen@yahoo.co.uk"
     def title = "iTunes Service Plugin"
     def description = '''
-This plugin allows Grails applications to integrate with the iTunes Web Services and RSS Feeds.
-'''
+    	A plugin for the Grails Framework that facilitates the integration with iTunes Web Services and Feeds.
+    	The plugin draws on the Rome libraries (https://rome.dev.java.net/) to parse and handle feed data, and
+    	then converts results into instances of an Album domain class.'''
 
     // URL to the plugin's documentation
     def documentation = "http://grails.org/plugin/itunes-service"
