@@ -1,11 +1,6 @@
 package uk.co.hashcode.itunes
 
 import grails.test.*
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-import sun.util.calendar.LocalGregorianCalendar.Date;
 
 class ItunesFeedsServiceTests extends GrailsUnitTestCase {
 	ItunesFeedsService itunesFeedsService
@@ -20,8 +15,6 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     }
 
     void testConvertRssParams() {
-    	def formatter = new SimpleDateFormat('MMM dd, yyyy')
-    	
     	def rank = 1
     	def artist = 'Lee DeWyze'
     	def artistLink = 'http://itunes.apple.com/artist/lee-dewyze/id356767680?uo=1&v0=9988'
@@ -56,13 +49,11 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     	assert albumInstance.price == albumPrice
     	assert albumInstance.image == coverArt
     	assert albumInstance.rights == rights
-    	assert albumInstance.releaseDate == formatter.parse(releasedate)
+    	assert albumInstance.releaseDate == releasedate
     	
     }
     
     void testConvertXmlParams(){
-    	def formatter = new SimpleDateFormat('yyyy-MM-dd')
-    	
     	def rank = 1
     	def name = 'Rokstarr (Bonus Track Version)'
     	def contentType = 'Not Available'
@@ -95,44 +86,8 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     	assert albumInstance.artist == artist
     	assert albumInstance.price == price
     	assert albumInstance.image == image
-    	assert albumInstance.releaseDate == formatter.parse(releaseDate)
+    	assert albumInstance.releaseDate == releaseDate
     	assert albumInstance.link == link
 
-    }
-    
-    void testDateConversionForRssFeeds(){
-    	def date = 'October 26, 2010'
-    	def params = [[rank:1, releasedate:date]] //subtly different with no upper case D
-    	List albums = itunesFeedsService.convertRssParams(params)
-    	
-    	assert albums != null
-    	assert albums.size() == 1
-    	
-    	Album album = albums[0]
-    	def releaseDate = album.releaseDate
-    	assert releaseDate != null
-    	
-    	def cal = new GregorianCalendar()
-    	cal.set 2010, Calendar.OCTOBER, 26
-    	assert cal.time.compareTo(releaseDate)
-
-    }
-    
-    void testDateConversionForXmlFeeds(){
-    	def date = '2010-06-01T00:00:00-07:00'
-    	def params = [[rank:1, releaseDate:date]]
-    	List albums = itunesFeedsService.convertXmlParams(params)
-    	
-    	assert albums != null
-    	assert albums.size() == 1
-    	
-    	Album album = albums[0]
-    	def releaseDate = album.releaseDate
-    	assert releaseDate != null
-    	
-    	def cal = new GregorianCalendar()
-    	cal.set 2010, Calendar.JUNE, 1
-    	assert cal.time.compareTo(releaseDate)
-    			
     }
 }

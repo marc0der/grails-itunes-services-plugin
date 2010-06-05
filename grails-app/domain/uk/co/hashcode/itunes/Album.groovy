@@ -9,7 +9,7 @@ class Album {
 	String price
 	String image
 	String rights
-	Date releaseDate
+	String releaseDate
 	
     static constraints = {
     }

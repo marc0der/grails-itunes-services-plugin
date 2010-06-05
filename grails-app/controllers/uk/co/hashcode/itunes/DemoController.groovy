@@ -30,10 +30,7 @@ class DemoController {
         def featuredAlbums = itunesFeedsService.getFeaturedAlbums(featuedCmd)
         
         //top albums
-        def topCmd = new FeedsCommand(
-        		genre:Genre.ALL,
-        		limit:10,
-        		country:Country.USA)
+        def topCmd = new FeedsCommand() //a default command: Genre.POP, limit=10, Country.USA
         def topAlbums = itunesFeedsService.getTopAlbums(topCmd)
         
         def results = [
