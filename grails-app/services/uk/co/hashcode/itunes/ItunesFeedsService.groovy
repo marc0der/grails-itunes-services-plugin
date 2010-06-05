@@ -87,6 +87,7 @@ class ItunesFeedsService {
     	def albums = []
     	paramsList.each { params ->
     		def formatter = new SimpleDateFormat('MMM dd, yyyy')
+    		def releaseDate = formatter.parse(params.releasedate)
 	    	albums << new Album(
 	    		rank:params.rank,
 	    		artist:params.artist,
@@ -96,7 +97,7 @@ class ItunesFeedsService {
 	    		price:params.albumPrice,
 	    		image:params.coverArt,
 	    		rights:params.rights,
-	    		releaseDate:formatter.parse(params.releasedate)
+	    		releaseDate:releaseDate
 	    	)
     	}
     	
@@ -107,13 +108,14 @@ class ItunesFeedsService {
     	def albums = []
     	paramsList.each { params ->
 	    	def formatter = new SimpleDateFormat('yyyy-MM-dd')
+	    	def releaseDate = formatter.parse(params.releaseDate)
 	    	albums << new Album(
 	    		rank:params.rank,
 	    		name:params.name,
 	    		artist:params.artist,
 	    		price:params.price,
 	    		image:params.image,
-	    		releaseDate:formatter.parse(params.releaseDate),
+	    		releaseDate:releaseDate,
 	    		link:params.link
 	    	)
     	}

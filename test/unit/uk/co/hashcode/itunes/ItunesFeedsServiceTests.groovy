@@ -102,7 +102,7 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     
     void testDateConversionForRssFeeds(){
     	def date = 'October 26, 2010'
-    	def params = [[releasedate:date]] //subtly different with no upper case D
+    	def params = [[rank:1, releasedate:date]] //subtly different with no upper case D
     	List albums = itunesFeedsService.convertRssParams(params)
     	
     	assert albums != null
@@ -120,7 +120,7 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     
     void testDateConversionForXmlFeeds(){
     	def date = '2010-06-01T00:00:00-07:00'
-    	def params = [[releaseDate:date]]
+    	def params = [[rank:1, releaseDate:date]]
     	List albums = itunesFeedsService.convertXmlParams(params)
     	
     	assert albums != null
