@@ -3,13 +3,13 @@ package uk.co.hashcode.itunes
 class Album {
 	int rank
 	String artist
-	String artistLink
 	String name
 	String link
 	String price
 	String image
 	String rights
 	String releaseDate
+	String artistLink = ''
 	
     static constraints = {
     }
