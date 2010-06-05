@@ -1,6 +1,7 @@
 package uk.co.hashcode.itunes
 
 enum Genre {
+	ALL(0),
 	ALTERNATIVE(20),
 	BLUES(2),
 	CHILDREN(4),

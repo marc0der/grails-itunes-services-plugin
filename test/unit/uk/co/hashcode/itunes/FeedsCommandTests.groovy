@@ -174,10 +174,17 @@ class FeedsCommandTests {
 	}
 	
 	@Test
-	void testExecuteGenreNullDefaultsToPop() {
+	void testExecuteGenreAll() {
+		feedsCommand.genre = Genre.ALL
+		def result = feedsCommand.execute()
+		assert !result.contains('genre=')
+	}
+	
+	@Test
+	void testExecuteGenreNullDefaultsToAll() {
 		feedsCommand.genre = null
 		def result = feedsCommand.execute()
-		assert result.contains("genre=${Genre.POP.id}")
+		assert !result.contains('genre=')
 	}
 	
 	@Test

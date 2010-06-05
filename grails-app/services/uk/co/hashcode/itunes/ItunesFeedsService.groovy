@@ -22,8 +22,9 @@ class FeedsCommand {
 		country = country ?: Country.USA
 		def countryStr = "sf=${country.id}"
 		
-		genre = genre ?: Genre.POP
-		def genreStr = "genre=${genre.id}"
+		genre = genre ?: Genre.ALL
+		def genreStr = ''
+		if(genre) genreStr = "genre=${genre.id}"
 			
 		return "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/${countryStr}/${limitStr}/${genreStr}/${feedType.suffix}"
 	}

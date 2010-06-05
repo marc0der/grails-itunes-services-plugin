@@ -12,6 +12,7 @@ class GenreTests extends GrailsUnitTestCase {
     }
 
     void testEnumIds() {
+    	assert Genre.ALL.id == 0
     	assert Genre.ALTERNATIVE.id == 20
     	assert Genre.BLUES.id == 2
     	assert Genre.CHILDREN.id == 4
