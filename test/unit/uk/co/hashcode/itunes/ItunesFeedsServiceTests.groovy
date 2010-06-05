@@ -3,11 +3,11 @@ package uk.co.hashcode.itunes
 import grails.test.*
 
 class ItunesFeedsServiceTests extends GrailsUnitTestCase {
-	ItunesFeedsService itunesFeedsService
+	def feedsService
 	
     protected void setUp() {
         super.setUp()
-        itunesFeedsService = new ItunesFeedsService()
+        feedsService = new ItunesFeedsService()
     }
 
     protected void tearDown() {
@@ -37,7 +37,7 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     	    releasedate:releasedate
     	]]
     	
-    	List albums  = itunesFeedsService.convertRssParams(params)
+    	List albums  = feedsService.convertRssParams(params)
     	assert albums.size() == 1
     	
     	Album albumInstance = albums[0]
@@ -77,7 +77,7 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     	]]
 
     	
-    	List albums = itunesFeedsService.convertXmlParams(params)
+    	List albums = feedsService.convertXmlParams(params)
     	assert albums.size() == 1
     	
     	Album albumInstance = albums[0]
