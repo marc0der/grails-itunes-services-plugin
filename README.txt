@@ -33,6 +33,8 @@ class DemoController {
 
 }
 
+
+
 Each of these service methods return a List of uk.co.hashcode.itunes.Album instances.
 The Album instance has the following fields:
 
@@ -45,6 +47,63 @@ The Album instance has the following fields:
     String image
     String rights
     Date releaseDate
+
+
+
+The results may be refined by constructing the FeedsCommand as follows:
+def command = new FeedsCommand(
+    limit=10,               //amount of results, min 1, max 25
+    genre=Genre.POP,        //see below for all possible genres
+    country=Country.UK      //see below for all possible countries
+)
+
+Supported Genres:
+    ALL
+    ALTERNATIVE
+    BLUES
+    CHILDREN
+    CLASSICAL
+    COMMEDY
+    COUNTRY
+    DANCE
+    ELECTRONIC
+    FITNESS_WORKOUT
+    HIPHOP_RAP
+    JAZZ
+    LATINO
+    POP
+    RB_SOUL
+    REGGAE
+    RELIGEOUS
+    ROCK
+    SOUNDTRACK
+    SPOKEN_WORD
+    WORLD
+
+Supported Countries:
+    AUSTRALIA
+    AUSTRIA
+    BELGIUM
+    CANADA
+    DENMARK
+    FINLAND
+    FRANCE
+    GERMANY
+    GREECE
+    IRELAND
+    ITALY
+    JAPAN
+    LUXEMBOURG
+    MEXICO
+    NETHERLANDS
+    NEW_ZEALAND
+    NORWAY
+    PORTUGAL
+    SPAIN
+    SWEDEN
+    SWITZERLAND
+    UK
+    USA
 
 
 Find bugs or want enhancements?
