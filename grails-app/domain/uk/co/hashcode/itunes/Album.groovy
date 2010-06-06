@@ -16,6 +16,10 @@ class Album {
 	
     static constraints = {
     }
+    
+    static mapping = {
+        table 'itunes_album'
+    }
 	
 	String toString(){
 		"[Album: $id, rank:$rank, artist:$artist, artistLink:$artistLink, album:$name, albumLink:$link, albumPrice:$price, coverArt:$image, rights:$rights, releasedate:$releaseDate]"
