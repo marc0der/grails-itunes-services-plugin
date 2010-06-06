@@ -2,6 +2,9 @@ package uk.co.hashcode.itunes
 
 import com.sun.syndication.feed.synd.SyndFeed;
 
+/**
+ * Used for refining requests to the ITunesFeedsService.
+ */
 class FeedsCommand {
 	def feedType
 	def country
@@ -30,6 +33,11 @@ class FeedsCommand {
 	}
 }
 
+/**
+ * Exposes the iTunes RSS feeds as a Grails service to be used
+ * from within controllers. Returns results as lists of Album
+ * instances.
+ */
 class ItunesFeedsService {
 
     static transactional = false
@@ -38,30 +46,60 @@ class ItunesFeedsService {
     
     def feedFetcher
     
+    /**
+     * Gets new album releases from the iTunes Store.
+     *
+     * @param command The criteria for refining results.
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
     List getNewAlbumReleases(FeedsCommand command) {
     	command.feedType = FeedType.NEW_RELEASES
     	return convertRssParams(fetch(command))
     }
     
+    /**
+     * Gets albums that were just added to the iTunes Store.
+     *
+     * @param command The criteria for refining results.
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
     List getJustAddedAlbums(FeedsCommand command) {
     	command.feedType = FeedType.JUST_ADDED
     	return convertRssParams(fetch(command))
     }
     
+    /**
+     * Gets featured albums on the iTunes Store.
+     *
+     * @param command The criteria for refining results.
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
     List getFeaturedAlbums(FeedsCommand command) {
     	command.feedType = FeedType.FEATURED_ALBUMS
     	return convertRssParams(fetch(command))
     }
     
+    /**
+     * Gets the top albums on the iTunes Store.
+     *
+     * @param command The criteria for refining results.
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
     List getTopAlbums(FeedsCommand command) {
     	command.feedType = FeedType.TOP_ALBUMS
     	return convertXmlParams(fetch(command))
     }
     
+    /**
+     * Top iMixes on the iTunes Store are not supported in this plugin yet.
+     */
     List getTopIMixes(FeedsCommand command) {
     	throw new UnsupportedOperationException()
     }
-    
+
+    /**
+     * Top Songs on the iTunes Store are not currently supported in this plugin yet.
+     */
     List getTopSongs(FeedsCommand command) {
     	throw new UnsupportedOperationException()
     }

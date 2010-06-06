@@ -1,5 +1,13 @@
 package uk.co.hashcode.itunes
 
+/**
+ * The Genre of the results returned.
+ * Possible values:
+ *   ALL, ALTERNATIVE, BLUES, CHILDREN, CLASSICAL, COMMEDY, COUNTRY
+ *   DANCE, ELECTRONIC, FITNESS_WORKOUT, HIPHOP_RAP, JAZZ, LATINO
+ *   POP, RB_SOUL, REGGAE, RELIGEOUS, ROCK, SOUNDTRACK, SPOKEN_WORD
+ *   WORLD
+ */
 enum Genre {
 	ALL(0),
 	ALTERNATIVE(20),

@@ -1,5 +1,10 @@
 package uk.co.hashcode.itunes
 
+/**
+ * The types of feeds permitted.
+ * Possible values:
+ *   NEW_RELEASES, JUST_ADDED, FEATURED_ALBUMS, TOP_ALBUMS, TOP_IMIXES, TOP_SONGS  
+ */
 enum FeedType {
 	NEW_RELEASES('MZStore.woa', 'wpa', 'MRSS', 'newreleases', 'rss.xml'),
 	JUST_ADDED('MZStore.woa', 'wpa', 'MRSS', 'justadded', 'rss.xml'),

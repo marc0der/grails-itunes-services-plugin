@@ -1,5 +1,8 @@
 package uk.co.hashcode.itunes
 
+/**
+ * Represents an album on the iTunes Store.
+ */
 class Album {
 	int rank
 	String artist

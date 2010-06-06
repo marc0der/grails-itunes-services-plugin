@@ -1,5 +1,13 @@
 package uk.co.hashcode.itunes
 
+/**
+ * The country of the results returned.
+ * Possible values:
+ *   AUSTRALIA, AUSTRIA, BELGIUM, CANADA, DENMARK, FINLAND, FRANCE
+ *   GERMANY, GREECE, IRELAND, ITALY, JAPAN, LUXEMBOURG, MEXICO
+ *   NETHERLANDS, NEW_ZEALAND, NORWAY, PORTUGAL, SPAIN, SWEDEN
+ *   SWITZERLAND, UK, USA
+ */
 enum Country {
 	AUSTRALIA(143460),
 	AUSTRIA(143445),
