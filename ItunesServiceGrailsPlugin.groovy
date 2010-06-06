@@ -7,8 +7,8 @@ class ItunesServiceGrailsPlugin {
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-            "grails-app/views/",
-            "grails-app/controllers/"
+            'grails-app/views/',
+            'grails-app/controllers/uk/co/hashcode/itunes/DemoController.groovy'
     ]
 
     def author = "Marco Vermeulen"
