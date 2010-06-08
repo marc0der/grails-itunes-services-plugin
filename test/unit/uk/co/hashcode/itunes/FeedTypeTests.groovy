@@ -1,16 +1,22 @@
 package uk.co.hashcode.itunes
 
-import grails.test.*
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-class FeedTypeTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
+class FeedTypeTests {
+	
+	@Before
+    void setUp() {
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+	}
 
+	@After
+    void tearDown() {
+
+	}
+
+	@Test
     void testService() {
     	assert FeedType.NEW_RELEASES.service == 'newreleases'
         assert FeedType.JUST_ADDED.service == 'justadded'
@@ -20,6 +26,7 @@ class FeedTypeTests extends GrailsUnitTestCase {
         assert FeedType.TOP_SONGS.service == 'topsongs'
     }
     
+	@Test
     void testWoa() {
         //MZStore feeds
         assert FeedType.NEW_RELEASES.woa == 'MZStore.woa'
@@ -32,6 +39,7 @@ class FeedTypeTests extends GrailsUnitTestCase {
         assert FeedType.TOP_SONGS.woa == 'MZStoreServices.woa'
     }
 
+	@Test
     void testContext() {
         //MZStore feeds
         assert FeedType.NEW_RELEASES.context == 'wpa'
@@ -44,6 +52,7 @@ class FeedTypeTests extends GrailsUnitTestCase {
         assert FeedType.TOP_SONGS.context == 'ws'
     }
 
+	@Test
     void testSubContext() {
         //MZStore feeds
         assert FeedType.NEW_RELEASES.subContext == 'MRSS'
@@ -57,6 +66,7 @@ class FeedTypeTests extends GrailsUnitTestCase {
 
     }
 
+	@Test
     void testSuffix() {
         //MZStore feeds
         assert FeedType.NEW_RELEASES.suffix == 'rss.xml'

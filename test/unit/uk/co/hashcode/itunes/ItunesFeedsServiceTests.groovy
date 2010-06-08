@@ -1,19 +1,23 @@
 package uk.co.hashcode.itunes
 
-import grails.test.*
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-class ItunesFeedsServiceTests extends GrailsUnitTestCase {
+class ItunesFeedsServiceTests {
 	def feedsService
 	
-    protected void setUp() {
-        super.setUp()
+	@Before
+    void setUp() {
         feedsService = new ItunesFeedsService()
     }
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+	@After
+    void tearDown() {
 
+	}
+
+	@Test
     void testConvertRssParams() {
     	def rank = 1
     	def artist = 'Lee DeWyze'
@@ -53,6 +57,7 @@ class ItunesFeedsServiceTests extends GrailsUnitTestCase {
     	
     }
     
+	@Test
     void testConvertXmlParams(){
     	def rank = 1
     	def name = 'Rokstarr (Bonus Track Version)'

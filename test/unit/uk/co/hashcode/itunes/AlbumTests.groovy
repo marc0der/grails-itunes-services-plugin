@@ -1,17 +1,19 @@
 package uk.co.hashcode.itunes
 
-import grails.test.*
-import org.junit.Asset.*;
+import org.junit.*
 
-class AlbumTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
+class AlbumTests {
+	@Before
+    void setUp() {
+		
     }
 
-    protected void tearDown() {
-        super.tearDown()
+	@After
+    void tearDown() {
+		
     }
 
+	@Test
     void testAlbumConstraints() {
     	//TODO: implement constraints tests
     }

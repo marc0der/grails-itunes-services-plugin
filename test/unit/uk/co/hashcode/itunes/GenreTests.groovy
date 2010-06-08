@@ -1,16 +1,22 @@
 package uk.co.hashcode.itunes
 
-import grails.test.*
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-class GenreTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
+class GenreTests {
+	
+	@Before
+    void setUp() {
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+	}
 
+	@After
+    void tearDown() {
+
+	}
+
+	@Test
     void testEnumIds() {
     	assert Genre.ALL.id == 0
     	assert Genre.ALTERNATIVE.id == 20

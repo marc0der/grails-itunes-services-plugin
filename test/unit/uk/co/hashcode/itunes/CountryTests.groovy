@@ -1,16 +1,20 @@
 package uk.co.hashcode.itunes
 
-import grails.test.*
+import org.junit.*;
 
-class CountryTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
+class CountryTests {
+    
+	@Before
+	void setUp() {
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+	}
 
+	@After
+    void tearDown() {
+    
+	}
+
+    @Test
     void testEnumIds() {
     	assert Country.AUSTRALIA.id == 143460
     	assert Country.AUSTRIA.id == 143445
