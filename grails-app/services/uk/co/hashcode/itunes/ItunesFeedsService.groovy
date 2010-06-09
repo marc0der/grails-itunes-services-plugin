@@ -42,6 +42,8 @@ class ItunesFeedsService {
 
     static transactional = false
     
+    def command = new FeedsCommand()
+    
     def domain
     
     def feedFetcher
@@ -54,7 +56,17 @@ class ItunesFeedsService {
      */
     List getNewAlbumReleases(FeedsCommand command) {
     	command.feedType = FeedType.NEW_RELEASES
-    	return convertRssParams(fetch(command))
+    	convertRssParams fetch(command)
+    }
+    
+    /**
+     * Gets new album releases from the iTunes Store.
+     * A convenience method that uses default command values.
+     * 
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
+    List getNewAlbumReleases() {
+    	getNewAlbumReleases command
     }
     
     /**
@@ -65,7 +77,17 @@ class ItunesFeedsService {
      */
     List getJustAddedAlbums(FeedsCommand command) {
     	command.feedType = FeedType.JUST_ADDED
-    	return convertRssParams(fetch(command))
+    	convertRssParams fetch(command)
+    }
+    
+    /**
+     * Gets albums that were just added to the iTunes Store.
+     * A convenience method that uses default command values.
+     * 
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
+    List getJustAddedAlbums() {
+    	getJustAddedAlbums command
     }
     
     /**
@@ -76,7 +98,17 @@ class ItunesFeedsService {
      */
     List getFeaturedAlbums(FeedsCommand command) {
     	command.feedType = FeedType.FEATURED_ALBUMS
-    	return convertRssParams(fetch(command))
+    	convertRssParams fetch(command)
+    }
+    
+    /**
+     * Gets featured albums on the iTunes Store.
+     * A convenience method that uses default command values.
+     *
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
+    List getFeaturedAlbums() {
+    	getFeaturedAlbums command
     }
     
     /**
@@ -87,7 +119,17 @@ class ItunesFeedsService {
      */
     List getTopAlbums(FeedsCommand command) {
     	command.feedType = FeedType.TOP_ALBUMS
-    	return convertXmlParams(fetch(command))
+    	convertXmlParams fetch(command)
+    }
+
+    /**
+     * Gets the top albums on the iTunes Store.
+     * A convenience method that uses default command values.
+     *
+     * @return A list of uk.co.hashcode.itunes.Album instances
+     */
+    List getTopAlbums() {
+    	getTopAlbums command
     }
     
     /**

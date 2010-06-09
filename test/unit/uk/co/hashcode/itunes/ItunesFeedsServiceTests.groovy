@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.fail
+
 class ItunesFeedsServiceTests {
 	def feedsService
 	
@@ -95,4 +97,130 @@ class ItunesFeedsServiceTests {
     	assert albumInstance.link == link
 
     }
+	
+	@Test
+	void testGetNewAlbumReleasesWithCommand(){
+		def command = new FeedsCommand()
+		def expected = []
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.NEW_RELEASES
+		}
+		
+		List releases = feedsService.getNewAlbumReleases(command)
+		assert expected == releases
+		
+	}
+	
+	@Test
+	void testGetNewAlbumReleasesWithoutCommand(){
+		def expected = []
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.NEW_RELEASES
+		}
+		
+		List releases = feedsService.getNewAlbumReleases()
+		assert expected == releases
+	}
+	
+	@Test
+	void testGetJustAddedAlbumsWithCommand(){
+		def expected = []
+		def command = new FeedsCommand()
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.JUST_ADDED
+		}
+		
+		List albums = feedsService.getJustAddedAlbums(command)
+		assert expected == albums
+	}
+
+	@Test
+	void testGetJustAddedAlbumsWithoutCommand(){
+		def expected = []
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.JUST_ADDED
+		}
+		
+		List albums = feedsService.getJustAddedAlbums()
+		assert expected == albums
+	}
+	
+	@Test
+	void testGetFeaturedAlbumsWithCommand(){
+		def expected = []
+		def command = new FeedsCommand()
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.FEATURED_ALBUMS
+		}
+		
+		List albums = feedsService.getFeaturedAlbums(command)
+		assert expected == albums
+	}
+	
+	@Test
+	void testGetFeaturedAlbumsWithoutCommand(){
+		def expected = []
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.FEATURED_ALBUMS
+		}
+		
+		List albums = feedsService.getFeaturedAlbums()
+		assert expected == albums
+	}
+
+	@Test
+	void testGetTopAlbumsWithCommand(){
+		def expected = []
+		def command = new FeedsCommand()
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.TOP_ALBUMS
+		}
+		
+		List albums = feedsService.getTopAlbums(command)
+		assert expected == albums
+	}
+	
+	@Test
+	void testGetTopAlbumsWithoutCommand(){
+		def expected = []
+		feedsService.convertRssParams = { return expected }
+		feedsService.fetch = { cmd ->
+			assert cmd.feedType == FeedType.TOP_ALBUMS
+		}
+		
+		List albums = feedsService.getTopAlbums()
+		assert expected == albums
+	}
+
+	@Test
+    void testGetTopIMixes(){
+		def feedsCommand = new FeedsCommand()
+    	try{
+    		feedsService.getTopIMixes(feedsCommand)
+    		fail()
+    		
+    	} catch (UnsupportedOperationException uoe){
+    		//expected
+    	}
+    }
+    
+	@Test
+    void testGetTopSongs(){
+		def feedsCommand = new FeedsCommand()
+		try{
+    		feedsService.getTopSongs(feedsCommand)
+    		fail()
+    		
+    	} catch (UnsupportedOperationException uoe){
+    		//expected
+    	}
+    }
+    
 }
