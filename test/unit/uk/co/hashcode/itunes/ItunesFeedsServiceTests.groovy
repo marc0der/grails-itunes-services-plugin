@@ -199,28 +199,23 @@ class ItunesFeedsServiceTests {
 		assert expected == albums
 	}
 
-	@Test
-    void testGetTopIMixes(){
-		def feedsCommand = new FeedsCommand()
-    	try{
-    		feedsService.getTopIMixes(feedsCommand)
-    		fail()
-    		
-    	} catch (UnsupportedOperationException uoe){
-    		//expected
-    	}
+	@Test(expected=UnsupportedOperationException)
+    void testGetTopIMixesWithCommand(){
+    	feedsService.getTopIMixes(new FeedsCommand())
+    }
+	
+	@Test(expected=UnsupportedOperationException)
+    void testGetTopIMixesWithoutCommand(){
+    	feedsService.getTopIMixes()
     }
     
-	@Test
-    void testGetTopSongs(){
-		def feedsCommand = new FeedsCommand()
-		try{
-    		feedsService.getTopSongs(feedsCommand)
-    		fail()
-    		
-    	} catch (UnsupportedOperationException uoe){
-    		//expected
-    	}
+	@Test(expected=UnsupportedOperationException)
+    void testGetTopSongsWithCommand(){
+    	feedsService.getTopSongs(new FeedsCommand())
     }
-    
+
+	@Test(expected=UnsupportedOperationException)
+    void testGetTopSongsWithoutCommand(){
+    	feedsService.getTopSongs()
+    }
 }

@@ -140,9 +140,23 @@ class ItunesFeedsService {
     }
 
     /**
+     * Top iMixes on the iTunes Store are not supported in this plugin yet.
+     */
+    List getTopIMixes() {
+    	throw new UnsupportedOperationException()
+    }
+    
+    /**
      * Top Songs on the iTunes Store are not currently supported in this plugin yet.
      */
     List getTopSongs(FeedsCommand command) {
+    	throw new UnsupportedOperationException()
+    }
+
+    /**
+     * Top Songs on the iTunes Store are not currently supported in this plugin yet.
+     */
+    List getTopSongs() {
     	throw new UnsupportedOperationException()
     }
     
