@@ -32,7 +32,9 @@ class DemoController {
     List justAddedAlbums = itunesFeedsService.getJustAddedAlbums(command)
     List featuredAlbums = itunesFeedsService.getFeaturedAlbums(command)
     List topAlbums = itunesFeedsService.getTopAlbums(command)
-       
+    
+    //from release 0.1.1 you can omit the command object on all service calls for default values
+    List defaultNewReleases = itunesFeedsService.getNewAlbumReleases()
     ... 
 
 }
