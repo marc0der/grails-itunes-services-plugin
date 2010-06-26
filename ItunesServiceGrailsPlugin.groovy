@@ -1,13 +1,14 @@
 class ItunesServiceGrailsPlugin {
     // the plugin version
-    def version = "0.1.1"
+    def version = "0.1.2"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.3.1 > *"
+    def grailsVersion = "1.3.0 > *"
     // the other plugins this plugin depends on
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
             'grails-app/views/',
+            'grails-app/i18n/',
             'grails-app/controllers/uk/co/hashcode/itunes/DemoController.groovy'
     ]
 
