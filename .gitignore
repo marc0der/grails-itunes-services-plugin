@@ -2,3 +2,4 @@ stacktrace.log
 target/
 web-app/
 grails-itunes-service-*.zip
+grails-app/i18n
