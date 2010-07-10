@@ -13,7 +13,9 @@ that may be persisted or rendered directly in your GSP.
 
 h3. Feeds and Web Services
 
-The initial release focuses only on retrieving and processing RSS Feeds that iTunes exposes. Subsequent releases will include Artist and Album searches. The plugin will also expand beyond the realm of Music, and will include Apps, Podcasts, TV Programs, Films and Music Videos. Please let me know what else you would like from the plugin!
+The initial release focuses only on retrieving and processing RSS Feeds that iTunes exposes. Subsequent releases
+will include Artist and Album searches. The plugin will also expand beyond the realm of Music, and will include Apps, 
+Podcasts, TV Programs, Films and Music Videos. Please let me know what else you would like from the plugin!
 
 
 h3. Using It
