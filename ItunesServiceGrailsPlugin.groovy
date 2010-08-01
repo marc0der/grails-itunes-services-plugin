@@ -9,7 +9,7 @@ class ItunesServiceGrailsPlugin {
     def pluginExcludes = [
             'grails-app/views/',
             'grails-app/i18n/',
-            'grails-app/controllers/uk/co/hashcode/itunes/DemoController.groovy'
+            'grails-app/controllers/uk/co/hashcode/itunes/feeds/DemoController.groovy'
     ]
 
     def author = "Marco Vermeulen"
@@ -36,7 +36,7 @@ class ItunesServiceGrailsPlugin {
 		    feedInfoCache = ref('feedInfoCache')
 	    }
 	    println 'FeedFetcher configured...'
-        itunesFeedsService(uk.co.hashcode.itunes.ItunesFeedsService){
+        itunesFeedsService(uk.co.hashcode.itunes.feeds.ItunesFeedsService){
 	    	domain(String, 'http://ax.itunes.apple.com')
             feedFetcher = ref('feedFetcher')
         }
