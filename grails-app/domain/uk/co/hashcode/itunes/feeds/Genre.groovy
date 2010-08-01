@@ -1,4 +1,4 @@
-package uk.co.hashcode.itunes
+package uk.co.hashcode.itunes.feeds
 
 /**
  * The Genre of the results returned.

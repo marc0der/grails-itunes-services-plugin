@@ -1,7 +1,7 @@
-package uk.co.hashcode.itunes
+package uk.co.hashcode.itunes.feeds
 
-import com.sun.syndication.fetcher.*;
-import com.sun.syndication.fetcher.impl.*;
+import com.sun.syndication.fetcher.*
+import com.sun.syndication.fetcher.impl.*
 
 import grails.test.*
 

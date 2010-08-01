@@ -1,4 +1,4 @@
-package uk.co.hashcode.itunes
+package uk.co.hashcode.itunes.feeds
 
 /**
  * Represents an album on the iTunes Store.

@@ -1,10 +1,6 @@
-package uk.co.hashcode.itunes
+package uk.co.hashcode.itunes.feeds
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.fail
+import org.junit.*
 
 class ItunesFeedsServiceTests {
 	def feedsService

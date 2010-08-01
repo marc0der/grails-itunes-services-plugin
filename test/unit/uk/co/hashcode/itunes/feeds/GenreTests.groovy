@@ -1,8 +1,6 @@
-package uk.co.hashcode.itunes
+package uk.co.hashcode.itunes.feeds
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*
 
 class GenreTests {
 	
