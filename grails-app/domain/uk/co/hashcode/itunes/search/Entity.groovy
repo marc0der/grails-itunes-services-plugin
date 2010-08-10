@@ -17,7 +17,7 @@ enum Entity {
 	SHORT_FILM('shortFilm'),
 	SHORT_FILM_ARTIST('shortFilmArtist'),
 	TV_EPISODE('tvEpisode'),
-	TV_SEASON('tvSeason');
+	TV_SEASON('tvSeason')
 	
 	String name
 	
