@@ -2,7 +2,7 @@ package uk.co.hashcode.itunes.search
 
 enum Media {
 	ALL('all'),
-	AUDIO_BOOK('audiobook'), 
+	AUDIOBOOK('audiobook'), 
 	MOVIE('movie'), 
 	MUSIC('music'), 
 	MUSIC_VIDEO('musicVideo'), 

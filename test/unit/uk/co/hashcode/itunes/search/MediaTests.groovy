@@ -13,7 +13,7 @@ class MediaTests extends GrailsUnitTestCase {
 
     void testMediaName() {
 		assert Media.ALL.name == 'all'
-		assert Media.AUDIO_BOOK.name == 'audiobook'
+		assert Media.AUDIOBOOK.name == 'audiobook'
 		assert Media.MOVIE.name == 'movie'
 		assert Media.MUSIC.name == 'music'
 		assert Media.MUSIC_VIDEO.name == 'musicVideo'
