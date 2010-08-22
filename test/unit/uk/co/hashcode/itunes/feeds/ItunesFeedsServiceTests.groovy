@@ -1,6 +1,7 @@
 package uk.co.hashcode.itunes.feeds
 
 import org.junit.*
+import uk.co.hashcode.itunes.Album
 
 class ItunesFeedsServiceTests {
 	def feedsService

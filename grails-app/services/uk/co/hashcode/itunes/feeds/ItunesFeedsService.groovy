@@ -1,6 +1,6 @@
 package uk.co.hashcode.itunes.feeds
 
-import com.sun.syndication.feed.synd.SyndFeed
+import uk.co.hashcode.itunes.Album
 
 /**
  * Used for refining requests to the ITunesFeedsService.

@@ -1,4 +1,4 @@
-package uk.co.hashcode.itunes.feeds
+package uk.co.hashcode.itunes
 
 import org.junit.*
 
