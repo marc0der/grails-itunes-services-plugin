@@ -9,4 +9,8 @@ enum Language {
 	public Language(String name){
 		this.name = name
 	}
+
+    String toString(){
+        name
+    }
 }

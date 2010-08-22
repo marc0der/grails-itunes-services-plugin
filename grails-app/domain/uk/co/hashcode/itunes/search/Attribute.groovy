@@ -34,4 +34,8 @@ enum Attribute {
     public Attribute(String name){
         this.name =name
     }
+
+    String toString(){
+        name
+    }
 }

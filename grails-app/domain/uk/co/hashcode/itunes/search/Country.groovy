@@ -10,4 +10,8 @@ enum Country {
 	public Country(String name){
 		this.name = name
 	}
+
+    String toString(){
+        name
+    }
 }

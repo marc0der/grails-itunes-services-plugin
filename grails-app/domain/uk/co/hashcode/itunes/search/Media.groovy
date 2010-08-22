@@ -15,4 +15,8 @@ enum Media {
 	public Media(String name){
 		this.name = name
 	}
+
+    String toString(){
+        name
+    }
 }

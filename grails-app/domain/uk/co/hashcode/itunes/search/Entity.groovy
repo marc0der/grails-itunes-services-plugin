@@ -24,4 +24,8 @@ enum Entity {
 	public Entity(String name){
 	    this.name = name
 	}
+
+    String toString(){
+        name
+    }
 }
