@@ -41,6 +41,11 @@ class ItunesServiceGrailsPlugin {
             feedFetcher = ref('feedFetcher')
         }
 	    println 'FeedsService configured...'
+
+        itunesSearchService(uk.co.hashcode.itunes.search.ItunesSearchService){
+            domain(String, 'ax.phobos.apple.com.edgesuite.net')
+            context(String, 'WebObjects/MZStoreServices.woa/wa/wsSearch')
+        }
     }
 
     def doWithDynamicMethods = { ctx ->
