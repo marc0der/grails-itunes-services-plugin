@@ -6,3 +6,8 @@ target/
 web-app/
 grails-itunes-service-*.zip
 grails-app/i18n
+out/
+itunes-service-grailsPlugins.iml
+itunes-service.iml
+itunes-service.ipr
+itunes-service.iws
