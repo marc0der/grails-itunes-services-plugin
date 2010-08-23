@@ -24,7 +24,7 @@ class ItunesSearchServiceIntegrationTests {
 
     @Test
     void testSearch(){
-        command = new ItunesSearchCommand('Led Zeppelin')
+        command = new ItunesSearchCommand(term:'Led Zeppelin')
         List<Album> albums = service.search(command)
         assert albums
 

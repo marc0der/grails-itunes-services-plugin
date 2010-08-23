@@ -7,7 +7,7 @@ class ItunesSearchCommandTests {
 	
 	@Before
 	void setUp() throws Exception {
-		command = new ItunesSearchCommand('search')
+		command = new ItunesSearchCommand(term:'search')
 	}
 
     @Test
@@ -20,6 +20,11 @@ class ItunesSearchCommandTests {
         assert command.limit == 20
         
         assert command.profile == null
+    }
+
+    @Test
+    void testExecuteReturnsNotNull(){
+        assert command.execute() != null
     }
 
     @Test
@@ -67,14 +72,9 @@ class ItunesSearchCommandTests {
         assert searchString == 'media=movie&entity=movie&attribute=actorTerm&language=en_us&country=US&limit=20&term=search'
     }
 
-	@Test
-	void testExecuteReturnsNotNull(){
-		assert command.execute() != null
-	}
-
     @Test
 	void testExecuteThrowsExceptionNoSearchTerm() {
-	    command = new ItunesSearchCommand(null)
+	    command = new ItunesSearchCommand()
 	    try {
 	        command.execute()
 	        fail()

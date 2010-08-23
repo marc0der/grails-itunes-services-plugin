@@ -2,7 +2,6 @@ package uk.co.hashcode.itunes.search
 
 import grails.converters.JSON
 import uk.co.hashcode.itunes.Album
-import org.codehaus.groovy.grails.web.json.JSONObject
 
 class ItunesSearchCommand {
     def term
@@ -17,10 +16,6 @@ class ItunesSearchCommand {
     SearchProfile profile
 
     def limit = 20
-
-    public ItunesSearchCommand(String term){
-        this.term = term
-    }
 
 	String execute(){
 	    if(!term) throw new IllegalArgumentException('Search term not specified.')
@@ -57,7 +52,7 @@ class ItunesSearchService {
         def url = urlStr.toURL()
         def json = url.text
         def jsonObject = JSON.parse(json)
-        def results = unmarshallJson(jsonObject)
+        def results = unmarshallJsonAlbums(jsonObject)
         return results
     }
 
@@ -67,7 +62,7 @@ class ItunesSearchService {
         return "http://$domain/$context?$urlString"
     }
 
-    List<Album> unmarshallJson(def jsonObject){
+    List<Album> unmarshallJsonAlbums(def jsonObject){
         def albums = []
         jsonObject.results.each { album ->
             albums << new Album(
