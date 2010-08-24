@@ -47,13 +47,18 @@ class ItunesSearchService {
 
     def context
 
+    /**
+     * General search method that takes the ItunesSearchCommand
+     * as argument, and returns a GroovyObject.
+     * @param command The iTunes search command
+     * @return The resultant groovy object
+     */
     def search(ItunesSearchCommand command) {
         def urlStr = buildUrl(command)
         def url = urlStr.toURL()
         def json = url.text
         def jsonObject = JSON.parse(json)
-        def results = unmarshallJsonAlbums(jsonObject)
-        return results
+        return jsonObject
     }
 
     def buildUrl(ItunesSearchCommand command){

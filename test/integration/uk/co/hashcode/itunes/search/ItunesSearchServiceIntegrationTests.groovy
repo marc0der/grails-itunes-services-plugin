@@ -25,17 +25,17 @@ class ItunesSearchServiceIntegrationTests {
     @Test
     void testSearch(){
         command = new ItunesSearchCommand(term:'Led Zeppelin')
-        List<Album> albums = service.search(command)
-        assert albums
+        def results = service.search(command)
+        assert results
 
-        for(album in albums){
+        for(album in results.albums){
             println album
-            assert album.name
-            assert album.artist
-            assert album.link
-            assert album.price
-            assert album.image
-            assert album.rights
+            assert album.collectionName
+            assert album.artistName
+            assert album.collectionViewUrl
+            assert album.collectionPrice
+            assert album.artworkUrl100
+            assert album.copyright
             assert album.releaseDate
         }
 

@@ -87,11 +87,10 @@ class ItunesSearchServiceTests {
 
     @Test
     void testUnmarshallJsonAlbumsSuccess() {
-        List<Album> albums = service.unmarshallJsonAlbums(jsonObject)
-        assert albums
-        assert albums.size() == 1
+        def groovyObject = service.unmarshallJsonAlbums(jsonObject)
+        assert groovyObject
 
-        Album album = albums[0]
+        Album album = groovyObject[0]
         assert album.artist == 'Led Zeppelin'
         assert album.name == 'The Complete Led Zeppelin (Remastered)'
         assert album.link == 'http://itunes.apple.com/us/album/the-complete-led-zeppelin/id266077709?uo=4'
