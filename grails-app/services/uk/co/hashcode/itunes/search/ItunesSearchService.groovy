@@ -49,7 +49,8 @@ class ItunesSearchService {
 
     /**
      * General search method that takes the ItunesSearchCommand
-     * as argument, and returns a GroovyObject.
+     * as argument, and returns a GroovyObject. Use this in
+     * conjunction with the getMetadata method.
      * @param command The iTunes search command
      * @return The resultant groovy object
      */
@@ -59,6 +60,12 @@ class ItunesSearchService {
         def json = url.text
         def jsonObject = JSON.parse(json)
         return jsonObject
+    }
+
+    def getMetadata(ItunesSearchCommand command){
+        def jsonObject = search(command)
+        def results = jsonObject.results
+        return results[0].keySet()
     }
 
     def buildUrl(ItunesSearchCommand command){

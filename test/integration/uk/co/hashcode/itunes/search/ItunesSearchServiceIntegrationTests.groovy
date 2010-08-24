@@ -16,15 +16,15 @@ class ItunesSearchServiceIntegrationTests {
 
     @Before
     void setUp(){
+        command = new ItunesSearchCommand(term:'Led Zeppelin')
         service = new ItunesSearchService(
-            domain:'ax.phobos.apple.com.edgesuite.net', 
+            domain:'ax.phobos.apple.com.edgesuite.net',
             context:'WebObjects/MZStoreServices.woa/wa/wsSearch'
         )
     }
 
     @Test
-    void testSearch(){
-        command = new ItunesSearchCommand(term:'Led Zeppelin')
+    void testSearchWithDefaults(){
         def results = service.search(command)
         assert results
 
@@ -39,5 +39,34 @@ class ItunesSearchServiceIntegrationTests {
             assert album.releaseDate
         }
 
+    }
+
+    @Test
+    void testGetMetadataWithDefaults(){
+        def metaData = service.getMetadata(command)
+        
+        assert metaData.contains('collectionExplicitness')
+        assert metaData.contains('collectionType')
+        assert metaData.contains('artworkUrl60')
+        assert metaData.contains('primaryGenreName')
+        assert metaData.contains('collectionId')
+        assert metaData.contains('wrapperType')
+        assert metaData.contains('collectionViewUrl')
+        assert metaData.contains('copyright')
+        assert metaData.contains('currency')
+        assert metaData.contains('country')
+        assert metaData.contains('releaseDate')
+        assert metaData.contains('artistId')
+        assert metaData.contains('artistViewUrl')
+        assert metaData.contains('amgVideoArtistId')
+        assert metaData.contains('contentAdvisoryRating')
+        assert metaData.contains('artistName')
+        assert metaData.contains('collectionCensoredName')
+        assert metaData.contains('artworkUrl100')
+        assert metaData.contains('amgArtistId')
+        assert metaData.contains('collectionName')
+        assert metaData.contains('trackCount')
+        assert metaData.contains('collectionPrice')
+        
     }
 }
