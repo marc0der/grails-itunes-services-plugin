@@ -1,6 +1,6 @@
 package uk.co.hashcode.itunes.feeds
 
-class DemoController {
+class FeedsDemoController {
 
     def itunesFeedsService
 
@@ -40,7 +40,7 @@ class DemoController {
 		    topAlbums:topAlbums
         ]
         
-        render(view:'show', model:[results:results])
+        render(view:'feeds', model:[results:results])
     }
 
 }
