@@ -65,7 +65,6 @@ class ItunesFeedsServiceIntegrationTests extends GrailsUnitTestCase {
     		assert album.image
     		assert album.releaseDate
     		assert album.link
-    		assert album.artistLink == ''
     		println album
     	}
     }
