@@ -3,6 +3,7 @@ package uk.co.hashcode.itunes.search
 import org.junit.Before
 import org.junit.Test
 import uk.co.hashcode.itunes.Album
+import uk.co.hashcode.itunes.Artist
 
 /**
  * Created by IntelliJ IDEA.
@@ -68,5 +69,57 @@ class ItunesSearchServiceIntegrationTests {
         assert metaData.contains('trackCount')
         assert metaData.contains('collectionPrice')
         
+    }
+
+    @Test
+    void testSearchAlbumsByNameSuccessAlbumType(){
+        validateAlbums service.searchAlbumsByName('Fordlandia')
+    }
+
+    @Test
+    void testSearchAlbumsByNameSuccessCompilationType(){
+        validateAlbums service.searchAlbumsByName('Presence')
+    }
+
+
+    @Test
+    void testSearchAlbumsByArtistSuccess(){
+        validateAlbums service.searchAlbumsByArtist('Led Zeppelin')
+    }
+
+    private void validateAlbums(albums){
+        assert albums != null
+        assert albums instanceof List<Album>
+
+        assert !albums.empty
+        albums.each { album ->
+            assert album.name
+            assert album.link
+            assert album.artist
+            assert album.price
+            assert album.image
+            assert album.releaseDate
+            println album
+        }
+    }
+
+    @Test
+    void testSearchArtistsByName(){
+        validateArtists service.searchArtistsByName('Led')
+    }
+
+    private void validateArtists(artists){
+        assert artists != null
+        assert artists instanceof List<Artist>
+
+        assert !artists.empty
+        artists.each { artist ->
+            assert artist
+            assert artist.name
+            assert artist.link
+            assert artist.artistId
+            assert artist.artistType
+            println artist
+        }
     }
 }

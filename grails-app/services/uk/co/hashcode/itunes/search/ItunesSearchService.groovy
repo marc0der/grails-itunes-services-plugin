@@ -2,6 +2,7 @@ package uk.co.hashcode.itunes.search
 
 import grails.converters.JSON
 import uk.co.hashcode.itunes.Album
+import uk.co.hashcode.itunes.Artist
 
 class ItunesSearchCommand {
     def term
@@ -47,6 +48,41 @@ class ItunesSearchService {
 
     def context
 
+
+    /**
+     * Search Albums by album name.
+     * @param name The album name to search for
+     * @return A list of Album objects.
+     */
+    List<Album> searchAlbumsByName(String name){
+        def command = new ItunesSearchCommand(profile:SearchProfile.ALBUMS, term:name)
+        def result = search(command)
+        return unmarshallJsonAlbums(result)
+    }
+
+    /**
+     * Search Albums by artist name.
+     * @param artist The name of the Artist
+     * @return A list of Album objects.
+     */
+    List<Album> searchAlbumsByArtist(String artist){
+        def command = new ItunesSearchCommand(profile:SearchProfile.ALBUMS_BY_ARTIST, term:artist)
+        def result = search(command)
+        return unmarshallJsonAlbums(result)
+    }
+
+
+    /**
+     * Search Artists by artist name.
+     * @param name The name of the artist.
+     * @return A list of Artist objects.
+     */
+    List<Artist> searchArtistsByName(String name){
+        def command = new ItunesSearchCommand(profile:SearchProfile.MUSIC_ARTISTS, term:name)
+        def result = search(command)
+        return unmarshallJsonArtists(result)
+    }
+
     /**
      * General search method that takes the ItunesSearchCommand
      * as argument, and returns a GroovyObject. Use this in
@@ -62,6 +98,12 @@ class ItunesSearchService {
         return jsonObject
     }
 
+    /**
+     * Gets metadata that describes search results
+     * that are retrieved in the search method.
+     * @param command The command object
+     * @return A key set of metadata
+     */
     def getMetadata(ItunesSearchCommand command){
         def jsonObject = search(command)
         def results = jsonObject.results
@@ -77,10 +119,14 @@ class ItunesSearchService {
     List<Album> unmarshallJsonAlbums(def jsonObject){
         def albums = []
         jsonObject.results.each { album ->
+            assert album.wrapperType == 'collection'
+            assert album.collectionType == 'Album' || album.collectionType == 'Compilation'
             albums << new Album(
-                    artist:album.artistName,
+                    albumId:album.collectionId,
                     name:album.collectionName,
                     link:album.collectionViewUrl,
+                    artistId:album.artistId,
+                    artist:album.artistName,
                     price:album.collectionPrice,
                     image:album.artworkUrl100,
                     rights:album.copyright,
@@ -90,5 +136,23 @@ class ItunesSearchService {
         }
 
         return albums
+    }
+
+    List<Artist> unmarshallJsonArtists(def jsonObject){
+        def artists = []
+        jsonObject.results.each { artist ->
+            assert artist.wrapperType == 'artist'
+            artists << new Artist(
+                    artistId:artist.artistId,
+                    amgArtistId:artist.amgArtistId,
+                    amgVideoArtistId:artist.amgVideoArtistId,
+                    name:artist.artistName,
+                    link:artist.artistLinkUrl,
+                    artistType:artist.artistType,
+                    genreId:artist.primaryGenreId,
+                    genreName:artist.primaryGenreName
+            )
+        }
+        return artists
     }
 }
