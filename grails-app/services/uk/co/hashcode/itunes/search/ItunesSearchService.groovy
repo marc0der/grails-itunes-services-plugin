@@ -119,8 +119,6 @@ class ItunesSearchService {
     List<Album> unmarshallJsonAlbums(def jsonObject){
         def albums = []
         jsonObject.results.each { album ->
-            assert album.wrapperType == 'collection'
-            assert album.collectionType == 'Album' || album.collectionType == 'Compilation'
             albums << new Album(
                     albumId:album.collectionId,
                     name:album.collectionName,

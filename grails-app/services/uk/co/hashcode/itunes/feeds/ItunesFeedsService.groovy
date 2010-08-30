@@ -43,7 +43,9 @@ class ItunesFeedsService {
     static transactional = false
     
     def command = new FeedsCommand()
-    
+
+    def protocol
+
     def domain
     
     def feedFetcher
@@ -162,7 +164,7 @@ class ItunesFeedsService {
     
     def fetch = { command ->
         def commandStr = command.execute()
-        def feed = feedFetcher.retrieveFeed(new URL("${domain}${commandStr}"));
+        def feed = feedFetcher.retrieveFeed(new URL("${protocol}://${domain}${commandStr}"));
         def albums = []
         feed.entries.eachWithIndex { item, count ->
             def params = [rank:(++count)]
