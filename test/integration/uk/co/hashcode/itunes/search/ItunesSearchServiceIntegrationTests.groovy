@@ -4,6 +4,7 @@ import org.junit.Before
 import org.junit.Test
 import uk.co.hashcode.itunes.Album
 import uk.co.hashcode.itunes.Artist
+import javax.sound.midi.Track
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,14 +15,21 @@ import uk.co.hashcode.itunes.Artist
 class ItunesSearchServiceIntegrationTests {
     ItunesSearchService service
     ItunesSearchCommand command
+    UnmarshallingService unmarshallingService
 
     @Before
     void setUp(){
+        unmarshallingService = new UnmarshallingService()
         command = new ItunesSearchCommand(term:'Led Zeppelin')
         service = new ItunesSearchService(
+            unmarshallingService:unmarshallingService,
             domain:'ax.phobos.apple.com.edgesuite.net',
             context:'WebObjects/MZStoreServices.woa/wa/wsSearch'
         )
+
+        service.metaClass.search = {
+            return new Object()
+        }
     }
 
     @Test
@@ -87,6 +95,16 @@ class ItunesSearchServiceIntegrationTests {
         validateAlbums service.searchAlbumsByArtist('Led Zeppelin')
     }
 
+    @Test
+    void testSearchTracksByNameSuccess(){
+        validateTracks service.searchTracksByName('One')
+    }
+
+    @Test
+    void testSearchTracksByArtistSuccess(){
+        validateTracks service.searchTracksByArtist('Led Zeppelin')
+    }
+
     private void validateAlbums(albums){
         assert albums != null
         assert albums instanceof List<Album>
@@ -120,6 +138,17 @@ class ItunesSearchServiceIntegrationTests {
             assert artist.artistId
             assert artist.artistType
             println artist
+        }
+    }
+
+    private void validateTracks(tracks){
+        assert tracks != null
+        assert tracks instanceof List<Track>
+
+        assert !tracks.empty
+        tracks.each { track ->
+            assert track
+            println track
         }
     }
 }

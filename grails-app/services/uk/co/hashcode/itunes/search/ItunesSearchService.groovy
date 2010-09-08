@@ -3,6 +3,7 @@ package uk.co.hashcode.itunes.search
 import grails.converters.JSON
 import uk.co.hashcode.itunes.Album
 import uk.co.hashcode.itunes.Artist
+import uk.co.hashcode.itunes.Track
 
 class ItunesSearchCommand {
     def term
@@ -44,6 +45,8 @@ class ItunesSearchService {
 
     static transactional = false
 
+    def unmarshallingService
+
     def domain
 
     def context
@@ -57,7 +60,7 @@ class ItunesSearchService {
     List<Album> searchAlbumsByName(String name){
         def command = new ItunesSearchCommand(profile:SearchProfile.ALBUMS, term:name)
         def result = search(command)
-        return unmarshallJsonAlbums(result)
+        return unmarshallingService.unmarshallJsonAlbums(result)
     }
 
     /**
@@ -68,9 +71,8 @@ class ItunesSearchService {
     List<Album> searchAlbumsByArtist(String artist){
         def command = new ItunesSearchCommand(profile:SearchProfile.ALBUMS_BY_ARTIST, term:artist)
         def result = search(command)
-        return unmarshallJsonAlbums(result)
+        return unmarshallingService.unmarshallJsonAlbums(result)
     }
-
 
     /**
      * Search Artists by artist name.
@@ -80,7 +82,29 @@ class ItunesSearchService {
     List<Artist> searchArtistsByName(String name){
         def command = new ItunesSearchCommand(profile:SearchProfile.MUSIC_ARTISTS, term:name)
         def result = search(command)
-        return unmarshallJsonArtists(result)
+        return unmarshallingService.unmarshallJsonArtists(result)
+    }
+
+    /**
+     * Search Tracks by track name.
+     * @param name The track name
+     * @return A list of Track objects
+     */
+    List<Track> searchTracksByName(String name){
+        def command = new ItunesSearchCommand(profile:SearchProfile.MUSIC_TRACKS, term:name)
+        def result = search(command)
+        return unmarshallingService.unmarshallJsonTracks(result)
+    }
+
+    /**
+     * Search Tracks by artist name.
+     * @param artist The artist name
+     * @return A list of Track objects
+     */
+    List<Track> searchTracksByArtist(String artist){
+        def command = new ItunesSearchCommand(profile:SearchProfile.TRACKS_BY_ARTIST, term:artist)
+        def result = search(command)
+        return unmarshallingService.unmarshallJsonTracks(result)
     }
 
     /**
@@ -116,41 +140,4 @@ class ItunesSearchService {
         return "http://$domain/$context?$urlString"
     }
 
-    List<Album> unmarshallJsonAlbums(def jsonObject){
-        def albums = []
-        jsonObject.results.each { album ->
-            albums << new Album(
-                    albumId:album.collectionId,
-                    name:album.collectionName,
-                    link:album.collectionViewUrl,
-                    artistId:album.artistId,
-                    artist:album.artistName,
-                    price:album.collectionPrice,
-                    image:album.artworkUrl100,
-                    rights:album.copyright,
-                    releaseDate:album.releaseDate,
-                    artistLink:album.artistViewUrl
-            )
-        }
-
-        return albums
-    }
-
-    List<Artist> unmarshallJsonArtists(def jsonObject){
-        def artists = []
-        jsonObject.results.each { artist ->
-            assert artist.wrapperType == 'artist'
-            artists << new Artist(
-                    artistId:artist.artistId,
-                    amgArtistId:artist.amgArtistId,
-                    amgVideoArtistId:artist.amgVideoArtistId,
-                    name:artist.artistName,
-                    link:artist.artistLinkUrl,
-                    artistType:artist.artistType,
-                    genreId:artist.primaryGenreId,
-                    genreName:artist.primaryGenreName
-            )
-        }
-        return artists
-    }
 }

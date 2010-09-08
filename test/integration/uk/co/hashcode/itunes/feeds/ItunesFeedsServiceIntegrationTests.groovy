@@ -19,7 +19,7 @@ class ItunesFeedsServiceIntegrationTests extends GrailsUnitTestCase {
         	domain:'ax.itunes.apple.com',
         	feedFetcher:feedFetcher
         )
-        feedsCommand = new FeedsCommand()
+        feedsCommand = new ItunesFeedsCommand()
     }
     
     void testGetAlbumReleases() {

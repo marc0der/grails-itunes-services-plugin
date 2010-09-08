@@ -97,7 +97,7 @@ class ItunesFeedsServiceTests {
 	
 	@Test
 	void testGetNewAlbumReleasesWithCommand(){
-		def command = new FeedsCommand()
+		def command = new ItunesFeedsCommand()
 		def expected = []
 		feedsService.convertRssParams = { return expected }
 		feedsService.fetch = { cmd ->
@@ -124,7 +124,7 @@ class ItunesFeedsServiceTests {
 	@Test
 	void testGetJustAddedAlbumsWithCommand(){
 		def expected = []
-		def command = new FeedsCommand()
+		def command = new ItunesFeedsCommand()
 		feedsService.convertRssParams = { return expected }
 		feedsService.fetch = { cmd ->
 			assert cmd.feedType == FeedType.JUST_ADDED
@@ -149,7 +149,7 @@ class ItunesFeedsServiceTests {
 	@Test
 	void testGetFeaturedAlbumsWithCommand(){
 		def expected = []
-		def command = new FeedsCommand()
+		def command = new ItunesFeedsCommand()
 		feedsService.convertRssParams = { return expected }
 		feedsService.fetch = { cmd ->
 			assert cmd.feedType == FeedType.FEATURED_ALBUMS
@@ -174,7 +174,7 @@ class ItunesFeedsServiceTests {
 	@Test
 	void testGetTopAlbumsWithCommand(){
 		def expected = []
-		def command = new FeedsCommand()
+		def command = new ItunesFeedsCommand()
 		feedsService.convertRssParams = { return expected }
 		feedsService.fetch = { cmd ->
 			assert cmd.feedType == FeedType.TOP_ALBUMS
@@ -198,7 +198,7 @@ class ItunesFeedsServiceTests {
 
 	@Test(expected=UnsupportedOperationException)
     void testGetTopIMixesWithCommand(){
-    	feedsService.getTopIMixes(new FeedsCommand())
+    	feedsService.getTopIMixes(new ItunesFeedsCommand())
     }
 	
 	@Test(expected=UnsupportedOperationException)
@@ -208,7 +208,7 @@ class ItunesFeedsServiceTests {
     
 	@Test(expected=UnsupportedOperationException)
     void testGetTopSongsWithCommand(){
-    	feedsService.getTopSongs(new FeedsCommand())
+    	feedsService.getTopSongs(new ItunesFeedsCommand())
     }
 
 	@Test(expected=UnsupportedOperationException)

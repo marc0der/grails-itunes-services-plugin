@@ -6,7 +6,7 @@ class FeedsDemoController {
 
     def index = { 
         //new releases
-    	def newReleaseCommand = new FeedsCommand(
+    	def newReleaseCommand = new ItunesFeedsCommand(
         		genre:Genre.POP,
         		limit:10,
         		country:Country.UK
@@ -14,7 +14,7 @@ class FeedsDemoController {
         def newReleases = itunesFeedsService.getNewAlbumReleases(newReleaseCommand)
         
         //just added
-        def justAddedCommand = new FeedsCommand(
+        def justAddedCommand = new ItunesFeedsCommand(
         		genre:Genre.ROCK,
         		limit:5,
         		country:Country.JAPAN
@@ -22,7 +22,7 @@ class FeedsDemoController {
         def justAddedAlbums = itunesFeedsService.getJustAddedAlbums(justAddedCommand)
         
         //featured albums
-        def featuedCmd = new FeedsCommand(
+        def featuedCmd = new ItunesFeedsCommand(
         		genre:Genre.ALL,
         		limit:4,
         		country:Country.GERMANY
@@ -30,7 +30,7 @@ class FeedsDemoController {
         def featuredAlbums = itunesFeedsService.getFeaturedAlbums(featuedCmd)
         
         //top albums
-        def topCmd = new FeedsCommand() //a default command: Genre.ALL, limit=10, Country.USA
+        def topCmd = new ItunesFeedsCommand() //a default command: Genre.ALL, limit=10, Country.USA
         def topAlbums = itunesFeedsService.getTopAlbums(topCmd)
         
         def results = [

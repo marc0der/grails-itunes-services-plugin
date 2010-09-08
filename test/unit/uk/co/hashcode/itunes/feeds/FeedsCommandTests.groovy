@@ -12,7 +12,7 @@ class FeedsCommandTests {
 	
 	@Before
 	void setUp() throws Exception {
-		feedsCommand = new FeedsCommand(
+		feedsCommand = new ItunesFeedsCommand(
 			feedType:feedType,
 			country:country,
 			genre:genre,

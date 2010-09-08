@@ -5,7 +5,7 @@ import uk.co.hashcode.itunes.Album
 /**
  * Used for refining requests to the ITunesFeedsService.
  */
-class FeedsCommand {
+class ItunesFeedsCommand {
 	def feedType
 	def country
 	int limit
@@ -42,7 +42,7 @@ class ItunesFeedsService {
 
     static transactional = false
     
-    def command = new FeedsCommand()
+    def command = new ItunesFeedsCommand()
 
     def protocol
 
@@ -56,7 +56,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
-    List getNewAlbumReleases(FeedsCommand command) {
+    List getNewAlbumReleases(ItunesFeedsCommand command) {
     	command.feedType = FeedType.NEW_RELEASES
     	convertRssParams fetch(command)
     }
@@ -77,7 +77,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
-    List getJustAddedAlbums(FeedsCommand command) {
+    List getJustAddedAlbums(ItunesFeedsCommand command) {
     	command.feedType = FeedType.JUST_ADDED
     	convertRssParams fetch(command)
     }
@@ -98,7 +98,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
-    List getFeaturedAlbums(FeedsCommand command) {
+    List getFeaturedAlbums(ItunesFeedsCommand command) {
     	command.feedType = FeedType.FEATURED_ALBUMS
     	convertRssParams fetch(command)
     }
@@ -119,7 +119,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
-    List getTopAlbums(FeedsCommand command) {
+    List getTopAlbums(ItunesFeedsCommand command) {
     	command.feedType = FeedType.TOP_ALBUMS
     	convertXmlParams fetch(command)
     }
@@ -137,7 +137,7 @@ class ItunesFeedsService {
     /**
      * Top iMixes on the iTunes Store are not supported in this plugin yet.
      */
-    List getTopIMixes(FeedsCommand command) {
+    List getTopIMixes(ItunesFeedsCommand command) {
     	throw new UnsupportedOperationException()
     }
 
@@ -151,7 +151,7 @@ class ItunesFeedsService {
     /**
      * Top Songs on the iTunes Store are not currently supported in this plugin yet.
      */
-    List getTopSongs(FeedsCommand command) {
+    List getTopSongs(ItunesFeedsCommand command) {
     	throw new UnsupportedOperationException()
     }
 
