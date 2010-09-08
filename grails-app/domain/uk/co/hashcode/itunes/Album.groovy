@@ -5,11 +5,11 @@ package uk.co.hashcode.itunes
  */
 class Album {
 	int rank
-    String albumId
+    long albumId
     String name
     String link
     String artist
-    String artistId
+    long artistId
     String price
 	String image
 	String rights

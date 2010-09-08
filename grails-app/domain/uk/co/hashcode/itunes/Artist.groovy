@@ -4,13 +4,13 @@ package uk.co.hashcode.itunes
  * Represents an Artist on the iTunes Store.
  */
 class Artist {
-    String artistId
+    long artistId
     String amgArtistId
     String amgVideoArtistId
     String name
     String link
     String artistType
-    String genreId
+    long genreId
     String genreName
 
     static constraints = {
