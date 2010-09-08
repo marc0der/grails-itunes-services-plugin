@@ -1,8 +1,8 @@
 class ItunesServiceGrailsPlugin {
     // the plugin version
-    def version = "0.1.2"
+    def version = "0.2"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.3.0 > *"
+    def grailsVersion = "1.3.4 > *"
     // the other plugins this plugin depends on
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
@@ -16,9 +16,10 @@ class ItunesServiceGrailsPlugin {
     def authorEmail = "marco_vermeulen@yahoo.co.uk"
     def title = "iTunes Service Plugin"
     def description = '''
-    	A plugin for the Grails Framework that facilitates the integration with iTunes Web Services and Feeds.
-    	The plugin draws on the Rome libraries (https://rome.dev.java.net/) to parse and handle feed data, and
-    	then converts results into instances of an Album domain class.'''
+    	A plugin for the Grails Framework that facilitates the integration with iTunes Search Services and Feeds.
+    	The plugin draws on the Rome libraries (https://rome.dev.java.net/) to parse and handle feed data. It also
+        queries the iTunes Affiliate Search Services. It also converts results into instances of appropriate domain class.
+    '''
 
     // URL to the plugin's documentation
     def documentation = "http://grails.org/plugin/itunes-service"
