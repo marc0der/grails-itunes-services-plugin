@@ -108,6 +108,59 @@ class ItunesSearchService {
     }
 
     /**
+     * Search MusicVideos by artist name.
+     * @param artist The artist name
+     * @return A list of MusicVideo objects
+     */
+    List searchMusicVideosByArtist(String artist){
+        throw new UnsupportedOperationException('Use SearchProfile.MUSIC_VIDEOS_BY_ARTIST for search.')
+    }
+
+    List searchMoviesByName(String name){
+        throw new UnsupportedOperationException('Use SearchProfile.MOVIES for search.')
+    }
+
+    List searchMoviesByArtist(String artist){
+        throw new UnsupportedOperationException('Use SearchProfile.MOVIES_BY_ARTIST for search.')
+    }
+
+    List searchMoviesByActor(String actor){
+        throw new UnsupportedOperationException('Use SearchProfile.MOVIES_BY_ACTOR for search.')
+    }
+
+    List searchPodcastsByName(String podcast){
+        throw new UnsupportedOperationException('Use SearchProfile.PODCASTS for search.')
+    }
+
+    List searchPodcastsByAuthor(String author){
+        throw new UnsupportedOperationException('Use SearchProfile.PODCASTS_BY_AUTHOR for search.')
+    }
+
+    List searchAudiobooksByName(String name){
+        throw new UnsupportedOperationException('Use SearchProfile.AUDIOBOOKS for search.')
+    }
+
+    List searchAudiobooksByAuthor(String author){
+        throw new UnsupportedOperationException('Use SearchProfile.AUDIOBOOKS_BY_AUTHOR for search.')
+    }
+
+    List searchShortFilmsByName(String name){
+        throw new UnsupportedOperationException('Use SearchProfile.SHORT_FILMS for search.')
+    }
+
+    List searchShortFilmsByArtist(String artist){
+        throw new UnsupportedOperationException('Use SearchProfile.SHORT_FILMS_BY_ARTIST for search.')
+    }
+
+    List searchTvShowByEpisode(String episode){
+        throw new UnsupportedOperationException('Use SearchProfile.TV_SHOWS_BY_EPISODE for search.')
+    }
+
+    List searchTvShowBySeason(String season){
+        throw new UnsupportedOperationException('Use SearchProfile.TV_SHOWS_BY_SEASON for search.')
+    }
+
+    /**
      * General search method that takes the ItunesSearchCommand
      * as argument, and returns a GroovyObject. Use this in
      * conjunction with the getMetadata method.
