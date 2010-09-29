@@ -4,6 +4,7 @@ import grails.converters.JSON
 import uk.co.hashcode.itunes.Album
 import uk.co.hashcode.itunes.Artist
 import uk.co.hashcode.itunes.Track
+import grails.plugin.springcache.annotations.Cacheable
 
 class ItunesSearchCommand {
     def term
@@ -57,6 +58,7 @@ class ItunesSearchService {
      * @param name The album name to search for
      * @return A list of Album objects.
      */
+    @Cacheable('albumsByNameCache')
     List<Album> searchAlbumsByName(String name){
         def command = new ItunesSearchCommand(profile:SearchProfile.ALBUMS, term:name)
         def result = search(command)
@@ -68,6 +70,7 @@ class ItunesSearchService {
      * @param artist The name of the Artist
      * @return A list of Album objects.
      */
+    @Cacheable('albumsByArtistCache')
     List<Album> searchAlbumsByArtist(String artist){
         def command = new ItunesSearchCommand(profile:SearchProfile.ALBUMS_BY_ARTIST, term:artist)
         def result = search(command)
@@ -79,6 +82,7 @@ class ItunesSearchService {
      * @param name The name of the artist.
      * @return A list of Artist objects.
      */
+    @Cacheable('artistsByNameCache')
     List<Artist> searchArtistsByName(String name){
         def command = new ItunesSearchCommand(profile:SearchProfile.MUSIC_ARTISTS, term:name)
         def result = search(command)
@@ -90,6 +94,7 @@ class ItunesSearchService {
      * @param name The track name
      * @return A list of Track objects
      */
+    @Cacheable('tracksByNameCache')
     List<Track> searchTracksByName(String name){
         def command = new ItunesSearchCommand(profile:SearchProfile.MUSIC_TRACKS, term:name)
         def result = search(command)
@@ -101,6 +106,7 @@ class ItunesSearchService {
      * @param artist The artist name
      * @return A list of Track objects
      */
+    @Cacheable('tracksByArtistCache')
     List<Track> searchTracksByArtist(String artist){
         def command = new ItunesSearchCommand(profile:SearchProfile.TRACKS_BY_ARTIST, term:artist)
         def result = search(command)
