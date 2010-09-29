@@ -1,6 +1,9 @@
 package uk.co.hashcode.itunes.feeds
 
 import uk.co.hashcode.itunes.Album
+import grails.plugin.springcache.annotations.Cacheable
+import org.apache.commons.lang.builder.EqualsBuilder
+import org.apache.commons.lang.builder.HashCodeBuilder
 
 /**
  * Used for refining requests to the ITunesFeedsService.
@@ -31,6 +34,27 @@ class ItunesFeedsCommand {
 			
 		return "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/${countryStr}/${limitStr}${genreStr}/${feedType.suffix}"
 	}
+	
+	def boolean equals(o){
+	    if(!(o && o instanceof ItunesFeedsCommand)) return false
+	    
+	    return new EqualsBuilder()
+	        .append(this.feedType, o.feedType)
+	        .append(this.country, o.country)
+	        .append(this.limit, o.limit)
+	        .append(this.genre, o.genre)
+	        .isEquals()
+	}
+	
+	def int hashCode(){
+	    return new HashCodeBuilder(17,37)
+	        .append(feedType)
+	        .append(country)
+	        .append(limit)
+	        .append(genre)
+	        .toHashCode()
+	}
+	
 }
 
 /**
@@ -56,6 +80,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('newAlbumReleasesCache')
     List getNewAlbumReleases(ItunesFeedsCommand command) {
     	command.feedType = FeedType.NEW_RELEASES
     	convertRssParams fetch(command)
@@ -67,6 +92,7 @@ class ItunesFeedsService {
      * 
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('newAlbumReleasesCache')
     List getNewAlbumReleases() {
     	getNewAlbumReleases command
     }
@@ -77,6 +103,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('justAddedAlbumsCache')
     List getJustAddedAlbums(ItunesFeedsCommand command) {
     	command.feedType = FeedType.JUST_ADDED
     	convertRssParams fetch(command)
@@ -88,6 +115,7 @@ class ItunesFeedsService {
      * 
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('justAddedAlbumsCache')
     List getJustAddedAlbums() {
     	getJustAddedAlbums command
     }
@@ -98,6 +126,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('featuredAlbumsCache')
     List getFeaturedAlbums(ItunesFeedsCommand command) {
     	command.feedType = FeedType.FEATURED_ALBUMS
     	convertRssParams fetch(command)
@@ -109,6 +138,7 @@ class ItunesFeedsService {
      *
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('featuredAlbumsCache')
     List getFeaturedAlbums() {
     	getFeaturedAlbums command
     }
@@ -119,6 +149,7 @@ class ItunesFeedsService {
      * @param command The criteria for refining results.
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('topAlbumsCache')
     List getTopAlbums(ItunesFeedsCommand command) {
     	command.feedType = FeedType.TOP_ALBUMS
     	convertXmlParams fetch(command)
@@ -130,6 +161,7 @@ class ItunesFeedsService {
      *
      * @return A list of uk.co.hashcode.itunes.Album instances
      */
+    @Cacheable('topAlbumsCache')
     List getTopAlbums() {
     	getTopAlbums command
     }
@@ -137,6 +169,7 @@ class ItunesFeedsService {
     /**
      * Top iMixes on the iTunes Store are not supported in this plugin yet.
      */
+    @Cacheable('topMixesCache')
     List getTopIMixes(ItunesFeedsCommand command) {
     	throw new UnsupportedOperationException()
     }
@@ -144,6 +177,7 @@ class ItunesFeedsService {
     /**
      * Top iMixes on the iTunes Store are not supported in this plugin yet.
      */
+    @Cacheable('topMixesCache')
     List getTopIMixes() {
     	throw new UnsupportedOperationException()
     }
@@ -151,6 +185,7 @@ class ItunesFeedsService {
     /**
      * Top Songs on the iTunes Store are not currently supported in this plugin yet.
      */
+    @Cacheable('topSongsCache')
     List getTopSongs(ItunesFeedsCommand command) {
     	throw new UnsupportedOperationException()
     }
@@ -158,6 +193,7 @@ class ItunesFeedsService {
     /**
      * Top Songs on the iTunes Store are not currently supported in this plugin yet.
      */
+    @Cacheable('topSongsCache')
     List getTopSongs() {
     	throw new UnsupportedOperationException()
     }
@@ -183,7 +219,7 @@ class ItunesFeedsService {
     	paramsList.each { params ->
 	    	albums << new Album(
 	    		rank:params.rank,
-	    		artist:params.artist,
+	    		artist:params.artist,                                      
 	    		artistLink:params.artistLink,
 	    		name:params.album,
 	    		link:params.albumLink,

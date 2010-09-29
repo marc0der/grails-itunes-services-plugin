@@ -190,5 +190,66 @@ class FeedsCommandTests {
 		def expected = "/WebObjects/${feedType.woa}/${feedType.context}/${feedType.subContext}/${feedType.service}/sf=${country.id}/limit=${limit}/genre=${genre.id}/${feedType.suffix}"
 		assert result == expected
 	}
+	
+    @Test
+    void testEqualsSuccess(){
+        def feedType = FeedType.NEW_RELEASES
+        def country = Country.DENMARK
+        def limit = 10
+        def genre = Genre.ALL
+        
+        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
+        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
+        
+        assert command1 == command2
+    }
+    
+    @Test
+    void testEqualsFailureType(){
+        def command = new ItunesFeedsCommand()
+        def other = new Object()
+        
+        assert command != other
+    }
+    
+    @Test
+    void testEqualsFailureProperties(){
+        def feedType = FeedType.NEW_RELEASES
+        def country = Country.DENMARK
+        def limit = 10
+        def genre = Genre.ALL
+        
+        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
+        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:11, genre:genre)
+        
+        assert command1 != command2
+    }
+    
+    @Test
+    void testHashCodeSameProperties(){
+        def feedType = FeedType.NEW_RELEASES
+        def country = Country.DENMARK
+        def limit = 10
+        def genre = Genre.ALL
+        
+        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
+        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
+        
+        assert command1.hashCode() == command2.hashCode()
+    }
+
+    @Test
+    void testHashCodeDifferentProperties(){
+        def feedType = FeedType.NEW_RELEASES
+        def country = Country.DENMARK
+        def limit = 10
+        def genre = Genre.ALL
+        
+        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
+        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:12, genre:genre)
+        
+        assert command1.hashCode() != command2.hashCode()
+    }
+
 
 }
