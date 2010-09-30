@@ -2,7 +2,7 @@ package uk.co.hashcode.itunes.feeds;
 
 import org.junit.*
 
-class FeedsCommandTests {
+class ItunesFeedsCommandTests {
 	def feedsCommand
 	
 	def feedType = FeedType.NEW_RELEASES
