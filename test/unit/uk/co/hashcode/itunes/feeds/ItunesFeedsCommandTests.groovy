@@ -192,61 +192,73 @@ class ItunesFeedsCommandTests {
 	}
 	
     @Test
-    void testEqualsSuccess(){
-        def feedType = FeedType.NEW_RELEASES
-        def country = Country.DENMARK
-        def limit = 10
-        def genre = Genre.ALL
-        
-        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
-        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
-        
+    void testEqualsTrue(){
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+
         assert command1 == command2
     }
     
     @Test
-    void testEqualsFailureType(){
+    void testEqualsFalseType(){
         def command = new ItunesFeedsCommand()
         def other = new Object()
         
         assert command != other
     }
-    
+
     @Test
-    void testEqualsFailureProperties(){
-        def feedType = FeedType.NEW_RELEASES
-        def country = Country.DENMARK
-        def limit = 10
-        def genre = Genre.ALL
-        
-        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
-        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:11, genre:genre)
+    void testEqualsFalseFeedTypeDiffers(){
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.JUST_ADDED, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseCountryDiffers(){
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRIA, limit:10, genre:Genre.ALL)
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseLimitDiffers(){
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:11, genre:Genre.ALL)
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseGenreDiffers(){
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ROCK)
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseAllProperties(){
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.JUST_ADDED, country:Country.AUSTRIA, limit:11, genre:Genre.ROCK)
         
         assert command1 != command2
     }
     
     @Test
     void testHashCodeSameProperties(){
-        def feedType = FeedType.NEW_RELEASES
-        def country = Country.DENMARK
-        def limit = 10
-        def genre = Genre.ALL
-        
-        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
-        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
-        
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+
         assert command1.hashCode() == command2.hashCode()
     }
 
     @Test
     void testHashCodeDifferentProperties(){
-        def feedType = FeedType.NEW_RELEASES
-        def country = Country.DENMARK
-        def limit = 10
-        def genre = Genre.ALL
-        
-        def command1 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:limit, genre:genre)
-        def command2 = new ItunesFeedsCommand(feedType:feedType, country:country, limit:12, genre:genre)
+        def command1 = new ItunesFeedsCommand(feedType:FeedType.NEW_RELEASES, country:Country.AUSTRALIA, limit:10, genre:Genre.ALL)
+        def command2 = new ItunesFeedsCommand(feedType:FeedType.JUST_ADDED, country:Country.AUSTRIA, limit:11, genre:Genre.ROCK)
         
         assert command1.hashCode() != command2.hashCode()
     }
