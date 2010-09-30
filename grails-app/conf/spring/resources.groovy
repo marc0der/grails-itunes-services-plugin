@@ -2,7 +2,6 @@ import org.springframework.cache.ehcache.EhCacheFactoryBean
 
 beans = {
 
-    println 'In the beans block...'
 
     //Feed Service related caches
 
@@ -13,7 +12,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     justAddedAlbumsCache(EhCacheFactoryBean) { bean ->
@@ -23,7 +22,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     featuredAlbumsCache(EhCacheFactoryBean) { bean ->
@@ -33,7 +32,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     topAlbumsCache(EhCacheFactoryBean) { bean ->
@@ -43,7 +42,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     topMixesCache(EhCacheFactoryBean) { bean ->
@@ -53,7 +52,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     topSongsCache(EhCacheFactoryBean) { bean ->
@@ -63,7 +62,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
 
@@ -76,7 +75,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     albumsByArtistCache(EhCacheFactoryBean) { bean ->
@@ -86,7 +85,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     artistsByNameCache(EhCacheFactoryBean) { bean ->
@@ -96,7 +95,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     tracksByNameCache(EhCacheFactoryBean) { bean ->
@@ -106,7 +105,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     tracksByArtistCache(EhCacheFactoryBean) { bean ->
@@ -116,7 +115,7 @@ beans = {
         diskPersistent = false
         memoryStoreEvictionPolicy = 'LRU'
         timeToIdle = 3600
-        timeToLive = 3600
+        timeToLive = 86400
     }
 
     
