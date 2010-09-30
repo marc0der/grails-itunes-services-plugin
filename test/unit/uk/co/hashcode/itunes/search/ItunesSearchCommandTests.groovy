@@ -122,4 +122,291 @@ class ItunesSearchCommandTests {
         def searchStr = command.execute()
         assert searchStr.contains('term=Led+Zeppelin')
     }
+
+    @Test
+    void testEqualsTrue(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1 == command2
+
+    }
+
+    @Test
+    void testEqualsFalseTypeDiffers(){
+        def command1 = new ItunesSearchCommand()
+        def object = new Object()
+
+        assert command != object
+        
+    }
+
+    @Test
+    void testEqualsFalseAllPropertiesDiffer(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.AUDIOBOOK,
+                entity:Entity.ALL_TRACK,
+                attribute:Attribute.ALL_TRACK_TERM,
+                country:Country.JP,
+                language:Language.JAPANESE,
+                profile:SearchProfile.TRACKS_BY_ARTIST,
+                limit:11
+        )
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseMediaDiffers(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.AUDIOBOOK,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseEntityDiffers(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_TRACK,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseAttributeDiffers(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_TRACK_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1 != command2
+
+    }
+
+    @Test
+    void testEqualsFalseCountryDiffers(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.US,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseLanguageDiffers(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.JAPANESE,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseSearchProfileDiffers(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testEqualsFalseLimitDiffers(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:11
+        )
+
+        assert command1 != command2
+    }
+
+    @Test
+    void testHashCodeSameProperties(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        assert command1.hashCode() == command2.hashCode()
+    }
+
+    @Test
+    void testHashCodeDifferentProperties(){
+        def command1 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:10
+        )
+
+        def command2 = new ItunesSearchCommand(
+                media:Media.ALL,
+                entity:Entity.ALL_ARTIST,
+                attribute:Attribute.ALL_ARTIST_TERM,
+                country:Country.GB,
+                language:Language.ENGLISH,
+                profile:SearchProfile.ALBUMS_BY_ARTIST,
+                limit:11
+        )
+
+        assert command1.hashCode() != command2.hashCode()
+    }
+
 }

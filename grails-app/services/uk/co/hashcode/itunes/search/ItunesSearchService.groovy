@@ -5,6 +5,8 @@ import uk.co.hashcode.itunes.Album
 import uk.co.hashcode.itunes.Artist
 import uk.co.hashcode.itunes.Track
 import grails.plugin.springcache.annotations.Cacheable
+import org.apache.commons.lang.builder.EqualsBuilder
+import org.apache.commons.lang.builder.HashCodeBuilder
 
 class ItunesSearchCommand {
     def term
@@ -39,6 +41,32 @@ class ItunesSearchCommand {
 
 		return searchString
 	}
+
+    def boolean equals(o){
+        if(!(o && o instanceof ItunesSearchCommand)) return false
+
+        return new EqualsBuilder()
+            .append(this.media, o.media)
+            .append(this.entity, o.entity)
+            .append(this.attribute, o.attribute)
+            .append(this.country, o.country)
+            .append(this.language, o.language)
+            .append(this.profile, o.profile)
+            .append(this.limit, o.limit)
+            .isEquals()
+    }
+
+    def int hashCode(){
+        return new HashCodeBuilder(17,37)
+            .append(media)
+            .append(entity)
+            .append(attribute)
+            .append(country)
+            .append(language)
+            .append(profile)
+            .append(limit)
+            .hashCode()
+    }
 	
 }
 
